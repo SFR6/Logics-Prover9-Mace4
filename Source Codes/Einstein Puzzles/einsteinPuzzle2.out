@@ -1,0 +1,265 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 16169 was started by tudorcristea on DESKTOP-C94JCEA,
+Wed Nov 29 19:38:42 2023
+The command was "./mace4 -c -f Puzzles/einsteinPuzzle3.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/einsteinPuzzle3.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,8).
+    % assign(domain_size, 8) -> assign(start_size, 8).
+    % assign(domain_size, 8) -> assign(end_size, 8).
+assign(max_models,1).
+
+list(distinct).
+[Footbal,Cricket,Volleyball,Badminton,LawnTennis,Basketball,Hockey,TableTennis].
+end_of_list.
+
+formulas(assumptions).
+Alex = 0.
+Betty = 1.
+Carol = 2.
+Dan = 3.
+Earl = 4.
+Fay = 5.
+George = 6.
+Harry = 7.
+Personnel = 0.
+Administration = 1.
+Marketing = 2.
+Department(x) <-> x = Personnel | x = Administration | x = Marketing.
+-Department(y) -> WorksIn(x,y) = 0.
+WorksIn(0,y) + WorksIn(1,y) + WorksIn(2,y) + WorksIn(3,y) + WorksIn(4,y) + WorksIn(5,y) + WorksIn(6,y) + WorksIn(7,y) <= 3.
+-WorksWith(x,x).
+WorksWith(x,y) <-> (exists z (x != y & WorksIn(x,z) = 1 & WorksIn(y,z) = 1)).
+WorksWith(x,y) <-> WorksWith(y,x).
+WorksIn(x,y) < 2.
+WorksIn(x,0) + WorksIn(x,1) + WorksIn(x,2) = 1.
+WorksIn(0,0) + WorksIn(1,0) + WorksIn(2,0) + WorksIn(3,0) + WorksIn(4,0) + WorksIn(5,0) + WorksIn(6,0) + WorksIn(7,0) + WorksIn(0,1) + WorksIn(1,1) + WorksIn(2,1) + WorksIn(3,1) + WorksIn(4,1) + WorksIn(5,1) + WorksIn(6,1) + WorksIn(7,1) + WorksIn(0,2) + WorksIn(1,2) + WorksIn(2,2) + WorksIn(3,2) + WorksIn(4,2) + WorksIn(5,2) + WorksIn(6,2) + WorksIn(7,2) = 8.
+WorksIn(Dan,Administration) = 1 & Dan != Footbal & Dan != Cricket.
+WorksIn(Fay,Personnel) = 1 & WorksWith(Fay,Alex) & Alex = TableTennis.
+x != Fay & x != Alex -> WorksIn(x,Personnel) = 0.
+-WorksWith(Earl,Dan) & -WorksWith(Harry,Dan).
+Carol = Hockey & WorksIn(Carol,Marketing) = 0.
+WorksIn(George,Administration) = 0 & George != Cricket & George != Badminton.
+(exists x (WorksIn(x,Administration) = 1 & x = Footbal)).
+(exists x (x = Volleyball & WorksIn(x,Personnel) = 1)).
+WorksIn(x,Administration) = 1 -> x != Badminton & x != LawnTennis.
+Harry != Cricket.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Department(x) <-> x = Personnel | x = Administration | x = Marketing # label(non_clause).  [assumption].
+2 -Department(y) -> WorksIn(x,y) = 0 # label(non_clause).  [assumption].
+3 WorksWith(x,y) <-> (exists z (x != y & WorksIn(x,z) = 1 & WorksIn(y,z) = 1)) # label(non_clause).  [assumption].
+4 WorksWith(x,y) <-> WorksWith(y,x) # label(non_clause).  [assumption].
+5 WorksIn(Dan,Administration) = 1 & Dan != Footbal & Dan != Cricket # label(non_clause).  [assumption].
+6 WorksIn(Fay,Personnel) = 1 & WorksWith(Fay,Alex) & Alex = TableTennis # label(non_clause).  [assumption].
+7 x != Fay & x != Alex -> WorksIn(x,Personnel) = 0 # label(non_clause).  [assumption].
+8 -WorksWith(Earl,Dan) & -WorksWith(Harry,Dan) # label(non_clause).  [assumption].
+9 Carol = Hockey & WorksIn(Carol,Marketing) = 0 # label(non_clause).  [assumption].
+10 WorksIn(George,Administration) = 0 & George != Cricket & George != Badminton # label(non_clause).  [assumption].
+11 (exists x (WorksIn(x,Administration) = 1 & x = Footbal)) # label(non_clause).  [assumption].
+12 (exists x (x = Volleyball & WorksIn(x,Personnel) = 1)) # label(non_clause).  [assumption].
+13 WorksIn(x,Administration) = 1 -> x != Badminton & x != LawnTennis # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+Alex = 0.
+Betty = 1.
+Carol = 2.
+Dan = 3.
+Earl = 4.
+Fay = 5.
+George = 6.
+Harry = 7.
+Personnel = 0.
+Administration = 1.
+Marketing = 2.
+-Department(x) | x = Personnel | x = Administration | x = Marketing.
+Department(x) | x != Personnel.
+Department(x) | x != Administration.
+Department(x) | x != Marketing.
+Department(x) | WorksIn(y,x) = 0.
+WorksIn(0,x) + WorksIn(1,x) + WorksIn(2,x) + WorksIn(3,x) + WorksIn(4,x) + WorksIn(5,x) + WorksIn(6,x) + WorksIn(7,x) <= 3.
+-WorksWith(x,x).
+-WorksWith(x,y) | y != x.
+-WorksWith(x,y) | WorksIn(x,f1(x,y)) = 1.
+-WorksWith(x,y) | WorksIn(y,f1(x,y)) = 1.
+WorksWith(x,y) | y = x | WorksIn(x,z) != 1 | WorksIn(y,z) != 1.
+-WorksWith(x,y) | WorksWith(y,x).
+WorksWith(x,y) | -WorksWith(y,x).
+WorksIn(x,y) < 2.
+WorksIn(x,0) + WorksIn(x,1) + WorksIn(x,2) = 1.
+WorksIn(0,0) + WorksIn(1,0) + WorksIn(2,0) + WorksIn(3,0) + WorksIn(4,0) + WorksIn(5,0) + WorksIn(6,0) + WorksIn(7,0) + WorksIn(0,1) + WorksIn(1,1) + WorksIn(2,1) + WorksIn(3,1) + WorksIn(4,1) + WorksIn(5,1) + WorksIn(6,1) + WorksIn(7,1) + WorksIn(0,2) + WorksIn(1,2) + WorksIn(2,2) + WorksIn(3,2) + WorksIn(4,2) + WorksIn(5,2) + WorksIn(6,2) + WorksIn(7,2) = 8.
+WorksIn(Dan,Administration) = 1.
+Dan != Footbal.
+Dan != Cricket.
+WorksIn(Fay,Personnel) = 1.
+WorksWith(Fay,Alex).
+Alex = TableTennis.
+x = Fay | x = Alex | WorksIn(x,Personnel) = 0.
+-WorksWith(Earl,Dan).
+-WorksWith(Harry,Dan).
+Carol = Hockey.
+WorksIn(Carol,Marketing) = 0.
+WorksIn(George,Administration) = 0.
+George != Cricket.
+George != Badminton.
+WorksIn(c1,Administration) = 1.
+c1 = Footbal.
+c2 = Volleyball.
+WorksIn(c2,Personnel) = 1.
+WorksIn(x,Administration) != 1 | x != Badminton.
+WorksIn(x,Administration) != 1 | x != LawnTennis.
+Harry != Cricket.
+Footbal != Cricket.
+Footbal != Volleyball.
+Footbal != Badminton.
+Footbal != LawnTennis.
+Footbal != Basketball.
+Footbal != Hockey.
+Footbal != TableTennis.
+Cricket != Volleyball.
+Cricket != Badminton.
+Cricket != LawnTennis.
+Cricket != Basketball.
+Cricket != Hockey.
+Cricket != TableTennis.
+Volleyball != Badminton.
+Volleyball != LawnTennis.
+Volleyball != Basketball.
+Volleyball != Hockey.
+Volleyball != TableTennis.
+Badminton != LawnTennis.
+Badminton != Basketball.
+Badminton != Hockey.
+Badminton != TableTennis.
+LawnTennis != Basketball.
+LawnTennis != Hockey.
+LawnTennis != TableTennis.
+Basketball != Hockey.
+Basketball != TableTennis.
+Hockey != TableTennis.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 8.
+
+============================== DOMAIN SIZE 8 =========================
+
+============================== MODEL =================================
+
+interpretation( 8, [number=1, seconds=0], [
+
+        function(Administration, [ 1 ]),
+
+        function(Alex, [ 0 ]),
+
+        function(Badminton, [ 7 ]),
+
+        function(Betty, [ 1 ]),
+
+        function(Carol, [ 2 ]),
+
+        function(Cricket, [ 4 ]),
+
+        function(Dan, [ 3 ]),
+
+        function(Earl, [ 4 ]),
+
+        function(Fay, [ 5 ]),
+
+        function(Footbal, [ 1 ]),
+
+        function(George, [ 6 ]),
+
+        function(Harry, [ 7 ]),
+
+        function(Hockey, [ 2 ]),
+
+        function(LawnTennis, [ 6 ]),
+
+        function(Marketing, [ 2 ]),
+
+        function(Personnel, [ 0 ]),
+
+        function(TableTennis, [ 0 ]),
+
+        function(Volleyball, [ 5 ]),
+
+        function(c1, [ 1 ]),
+
+        function(c2, [ 5 ]),
+
+        function(WorksIn(_,_), [
+			   1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0 ]),
+
+        function(f1(_,_), [
+			   0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 1, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 0, 0, 0,
+			   0, 1, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 2, 2,
+			   0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 2, 0, 0, 2,
+			   0, 0, 0, 0, 2, 0, 2, 0 ]),
+
+        relation(Department(_), [ 1, 1, 1, 0, 0, 0, 0, 0 ]),
+
+        relation(WorksWith(_,_), [
+			   0, 0, 0, 0, 0, 1, 0, 0,
+			   0, 0, 1, 1, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 0, 0, 0,
+			   0, 1, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 1, 1,
+			   1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 1,
+			   0, 0, 0, 0, 1, 0, 1, 0 ]),
+
+        function(Basketball, [ 3 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 8.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.00 seconds).
+Ground clauses: seen=1098, kept=560.
+Selections=74, assignments=125, propagations=171, current_models=1.
+Rewrite_terms=1165, rewrite_bools=991, indexes=6.
+Rules_from_neg_clauses=18, cross_offs=176.
+
+============================== end of statistics =====================
+
+User_CPU=0.00, System_CPU=0.01, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 16169 exit (max_models) Wed Nov 29 19:38:42 2023
+The process finished Wed Nov 29 19:38:42 2023

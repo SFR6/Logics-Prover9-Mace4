@@ -1,0 +1,28 @@
+set(arithmetic).
+assign(domain_size, 30).
+assign(max_models, -1).
+
+list(distinct).
+	[D1,D2,D3,D4,D5,D6].
+end_of_list.
+
+formulas(assumptions).
+	
+	isDigit(x) <-> x<=9.
+	
+	isDigit(D1) & isDigit(D2) & isDigit(D3) & isDigit(D4) & isDigit(D5) & isDigit(D6).
+	
+	even(x) <-> x=0 | x=2 | x=4 | x=6 | x=8.
+	odd(x) <-> x=1 | x=3 | x=5 | x=7 | x=9.
+	
+	(even(D1) & odd(D2) & even(D3) & odd(D4) & even(D5) & odd(D6)) |
+	(odd(D1) & even(D2) & odd(D3) & even(D4) & odd(D5) & even(D6)).
+	
+	neighbour(x,y) <-> y + -x > 1 | x + -y > 1.
+	neighbour(x,y) -> neighbour(y,x).
+	
+	neighbour(D1,D2) & neighbour(D2,D3) & neighbour(D3,D4) & neighbour(D4,D5) & neighbour(D5,D6).
+	
+	exists x exists y ((D5*10+D6)*x=(D3*10+D4) & (D5*10+D6)*y=(D1*10+D2)).
+
+end_of_list.

@@ -1,0 +1,25 @@
+set(arithmetic).
+assign(domain_size, 10).
+assign(max_models, -1).
+
+formulas(assumptions).
+	
+	less(x,y) < 2 & greater(x,y) < 2 & equal(x,y) < 2.
+	less(x,y) = 1 -> (x <= y).
+	less(x,y) = 0 -> (x > y).
+	
+	greater(x,y) = 1 -> (x >= y).
+	greater(x,y) = 0 -> (x < y).
+	
+	equal(x,y) = 1 -> (x = 1 & y = 1).
+	equal(x,y) = 0 -> (x != 1 | y != 1).
+	
+	f(x,y) = equal(less(c(x),y),greater(c(x),y)).
+	h(x) = f(0,x) + f(1,x) + f(2,x) + f(3,x) + f(4,x) + f(5,x) + f(6,x) + f(7,x) + f(8,x) + f(9,x).
+	
+	%First digit of a number cannot be 0
+	c(0) > 0.
+
+	c(x) = h(x).
+
+end_of_list.

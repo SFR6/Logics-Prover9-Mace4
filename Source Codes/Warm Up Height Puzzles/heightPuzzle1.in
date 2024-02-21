@@ -1,0 +1,29 @@
+set(arithmetic).
+assign(domain_size, 5).
+assign(max_models, -1).
+
+list(distinct).
+	[James, Carly, Kate, Sammy, Natalie].
+end_of_list.
+
+formulas(assumptions).
+
+	shorter(x,y) <-> x < y.
+	taller(x,y) <-> x > y.
+	
+	shorter(x,y) -> taller(y,x).
+	taller(x,y) -> shorter(y,x).
+	
+	%James is taller than Kate and Carly
+	taller(James, Carly) & taller(James, Kate).
+	
+	%Sammy is shorter than Kate
+	shorter(Sammy, Kate).
+	
+	%Natalie is shorter than Kate and Sammy
+	shorter(Natalie, Kate) & shorter(Natalie, Sammy).
+	
+	%Sammy is shorter than Carly
+	shorter(Sammy, Carly).
+
+end_of_list.

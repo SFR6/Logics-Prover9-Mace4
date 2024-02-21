@@ -1,0 +1,71 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 596 was started by tudorcristea on DESKTOP-C94JCEA,
+Sat Dec  9 13:44:38 2023
+The command was "./mace4 -c -f Puzzles/samLoydPuzzle3.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/samLoydPuzzle3.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,73).
+    % assign(domain_size, 73) -> assign(start_size, 73).
+    % assign(domain_size, 73) -> assign(end_size, 73).
+assign(max_models,1).
+
+formulas(assumptions).
+herd = 17 | herd = 35 | herd = 53 | herd = 71.
+(herd + 1) / 2 + (herd + 1) / 3 + (herd + 1) / 9 = herd.
+son1 * 2 = herd.
+son2 * 3 = herd.
+son3 * 9 = herd.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+herd = 17 | herd = 35 | herd = 53 | herd = 71.
+(herd + 1) / 2 + (herd + 1) / 3 + (herd + 1) / 9 = herd.
+son1 * 2 = herd.
+son2 * 3 = herd.
+son3 * 9 = herd.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 71.
+
+============================== DOMAIN SIZE 73 ========================
+
+============================== STATISTICS ============================
+
+For domain size 73.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.00 seconds).
+Ground clauses: seen=5, kept=5.
+Selections=2, assignments=146, propagations=0, current_models=0.
+Rewrite_terms=612, rewrite_bools=174, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=0.
+
+============================== end of statistics =====================
+
+User_CPU=0.00, System_CPU=0.00, Wall_clock=0.
+
+Exiting with failure.
+
+Process 596 exit (exhausted) Sat Dec  9 13:44:38 2023
+The process finished Sat Dec  9 13:44:38 2023

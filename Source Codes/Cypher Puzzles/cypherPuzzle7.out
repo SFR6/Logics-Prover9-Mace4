@@ -1,0 +1,795 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 91 was started by tudorcristea on DESKTOP-C94JCEA,
+Wed Dec 13 13:08:16 2023
+The command was "./mace4 -c -f Puzzles/cypherPuzzle7.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/cypherPuzzle7.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,10).
+    % assign(domain_size, 10) -> assign(start_size, 10).
+    % assign(domain_size, 10) -> assign(end_size, 10).
+assign(max_models,-1).
+
+formulas(assumptions).
+orAB(x) <-> A = x | B = x.
+orBC(x) <-> B = x | C = x.
+orAC(x) <-> A = x | C = x.
+notTwoDigitsAB(x,y) <-> A != x & A != y & B != x & B != y.
+notTwoDigitsBC(x,y) <-> B != x & B != y & C != x & C != y.
+notTwoDigitsAC(x,y) <-> A != x & A != y & C != x & C != y.
+oneDigitIsCorrectAndWronglyPlaced(x,y,z) <-> B = x & notTwoDigitsAC(y,z) | C = x & notTwoDigitsAB(y,z) | A = y & notTwoDigitsBC(x,z) | C = y & notTwoDigitsAB(x,z) | A = z & notTwoDigitsBC(x,y) | B = z & notTwoDigitsAC(x,y).
+twoDigitsAreCorrectAndWronglyPlaced(x,y,z) <-> A != x & orBC(x) & B != y & orAC(y) | A != x & orBC(x) & C != z & orAB(z) | B != y & orAC(y) & C != z & orAB(z).
+nothingIsCorrect(x,y,z) <-> A != x & A != y & A != z & B != x & B != y & B != z & C != x & C != y & C != z.
+oneDigitIsCorrectAndWellPlaced(x,y,z) <-> A = x & notTwoDigitsBC(y,z) | B = y & notTwoDigitsAC(x,z) | C = z & notTwoDigitsAB(x,y).
+twoDigitsAreCorrectAndWellPlaced(x,y,z) <-> A = x & B = y & C != z | A = x & B != y & C = z | A != x & B = y & C = z.
+oneDigitIsCorrectAndWellPlaced(6,8,2).
+oneDigitIsCorrectAndWronglyPlaced(6,1,4).
+twoDigitsAreCorrectAndWronglyPlaced(2,0,6).
+nothingIsCorrect(7,3,8).
+oneDigitIsCorrectAndWronglyPlaced(8,3,0).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 orAB(x) <-> A = x | B = x # label(non_clause).  [assumption].
+2 orBC(x) <-> B = x | C = x # label(non_clause).  [assumption].
+3 orAC(x) <-> A = x | C = x # label(non_clause).  [assumption].
+4 notTwoDigitsAB(x,y) <-> A != x & A != y & B != x & B != y # label(non_clause).  [assumption].
+5 notTwoDigitsBC(x,y) <-> B != x & B != y & C != x & C != y # label(non_clause).  [assumption].
+6 notTwoDigitsAC(x,y) <-> A != x & A != y & C != x & C != y # label(non_clause).  [assumption].
+7 oneDigitIsCorrectAndWronglyPlaced(x,y,z) <-> B = x & notTwoDigitsAC(y,z) | C = x & notTwoDigitsAB(y,z) | A = y & notTwoDigitsBC(x,z) | C = y & notTwoDigitsAB(x,z) | A = z & notTwoDigitsBC(x,y) | B = z & notTwoDigitsAC(x,y) # label(non_clause).  [assumption].
+8 twoDigitsAreCorrectAndWronglyPlaced(x,y,z) <-> A != x & orBC(x) & B != y & orAC(y) | A != x & orBC(x) & C != z & orAB(z) | B != y & orAC(y) & C != z & orAB(z) # label(non_clause).  [assumption].
+9 nothingIsCorrect(x,y,z) <-> A != x & A != y & A != z & B != x & B != y & B != z & C != x & C != y & C != z # label(non_clause).  [assumption].
+10 oneDigitIsCorrectAndWellPlaced(x,y,z) <-> A = x & notTwoDigitsBC(y,z) | B = y & notTwoDigitsAC(x,z) | C = z & notTwoDigitsAB(x,y) # label(non_clause).  [assumption].
+11 twoDigitsAreCorrectAndWellPlaced(x,y,z) <-> A = x & B = y & C != z | A = x & B != y & C = z | A != x & B = y & C = z # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+-orAB(x) | A = x | B = x.
+orAB(x) | A != x.
+orAB(x) | B != x.
+-orBC(x) | B = x | C = x.
+orBC(x) | B != x.
+orBC(x) | C != x.
+-orAC(x) | A = x | C = x.
+orAC(x) | A != x.
+orAC(x) | C != x.
+-notTwoDigitsAB(x,y) | A != x.
+-notTwoDigitsAB(x,y) | y != A.
+-notTwoDigitsAB(x,y) | B != x.
+-notTwoDigitsAB(x,y) | y != B.
+notTwoDigitsAB(x,y) | A = x | y = A | B = x | y = B.
+-notTwoDigitsBC(x,y) | B != x.
+-notTwoDigitsBC(x,y) | y != B.
+-notTwoDigitsBC(x,y) | C != x.
+-notTwoDigitsBC(x,y) | y != C.
+notTwoDigitsBC(x,y) | B = x | y = B | C = x | y = C.
+-notTwoDigitsAC(x,y) | A != x.
+-notTwoDigitsAC(x,y) | y != A.
+-notTwoDigitsAC(x,y) | C != x.
+-notTwoDigitsAC(x,y) | y != C.
+notTwoDigitsAC(x,y) | A = x | y = A | C = x | y = C.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | y = A | y = C | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | y = A | y = C | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | y = A | y = C | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | y = A | y = C | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | y = A | notTwoDigitsAB(x,z) | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | y = A | notTwoDigitsAB(x,z) | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | y = A | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | y = A | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | notTwoDigitsBC(x,z) | y = C | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | notTwoDigitsBC(x,z) | y = C | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | notTwoDigitsBC(x,z) | y = C | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | notTwoDigitsBC(x,z) | y = C | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | C = x | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | y = A | y = C | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | y = A | y = C | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | y = A | y = C | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | y = A | y = C | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | y = A | notTwoDigitsAB(x,z) | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | y = A | notTwoDigitsAB(x,z) | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | y = A | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | y = A | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | y = C | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | y = C | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | y = C | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | y = C | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B = x | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | y = A | y = C | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | y = A | y = C | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | y = A | y = C | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | y = A | y = C | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | y = A | notTwoDigitsAB(x,z) | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | y = A | notTwoDigitsAB(x,z) | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | y = A | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | y = A | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | notTwoDigitsBC(x,z) | y = C | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | notTwoDigitsBC(x,z) | y = C | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | notTwoDigitsBC(x,z) | y = C | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | notTwoDigitsBC(x,z) | y = C | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | C = x | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | y = A | y = C | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | y = A | y = C | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | y = A | y = C | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | y = A | y = C | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | y = A | notTwoDigitsAB(x,z) | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | y = A | notTwoDigitsAB(x,z) | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | y = A | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | y = A | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | y = C | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | y = C | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | y = C | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | y = C | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | z = A | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | z = A | notTwoDigitsAC(x,y).
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | z = B.
+-oneDigitIsCorrectAndWronglyPlaced(x,y,z) | notTwoDigitsAC(y,z) | notTwoDigitsAB(y,z) | notTwoDigitsBC(x,z) | notTwoDigitsAB(x,z) | notTwoDigitsBC(x,y) | notTwoDigitsAC(x,y).
+oneDigitIsCorrectAndWronglyPlaced(x,y,z) | B != x | -notTwoDigitsAC(y,z).
+oneDigitIsCorrectAndWronglyPlaced(x,y,z) | C != x | -notTwoDigitsAB(y,z).
+oneDigitIsCorrectAndWronglyPlaced(x,y,z) | y != A | -notTwoDigitsBC(x,z).
+oneDigitIsCorrectAndWronglyPlaced(x,y,z) | y != C | -notTwoDigitsAB(x,z).
+oneDigitIsCorrectAndWronglyPlaced(x,y,z) | z != A | -notTwoDigitsBC(x,y).
+oneDigitIsCorrectAndWronglyPlaced(x,y,z) | z != B | -notTwoDigitsAC(x,y).
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | A != x | y != B.
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | A != x | orAC(y).
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | A != x | z != C.
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | A != x | orAB(z).
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | orBC(x) | y != B.
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | orBC(x) | orAC(y).
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | orBC(x) | z != C.
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | orBC(x) | orAB(z).
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | y != B | z != C.
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | y != B | orAB(z).
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | orAC(y) | z != C.
+-twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | orAC(y) | orAB(z).
+twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | A = x | -orBC(x) | y = B | -orAC(y).
+twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | A = x | -orBC(x) | z = C | -orAB(z).
+twoDigitsAreCorrectAndWronglyPlaced(x,y,z) | y = B | -orAC(y) | z = C | -orAB(z).
+-nothingIsCorrect(x,y,z) | A != x.
+-nothingIsCorrect(x,y,z) | y != A.
+-nothingIsCorrect(x,y,z) | z != A.
+-nothingIsCorrect(x,y,z) | B != x.
+-nothingIsCorrect(x,y,z) | y != B.
+-nothingIsCorrect(x,y,z) | z != B.
+-nothingIsCorrect(x,y,z) | C != x.
+-nothingIsCorrect(x,y,z) | y != C.
+-nothingIsCorrect(x,y,z) | z != C.
+nothingIsCorrect(x,y,z) | A = x | y = A | z = A | B = x | y = B | z = B | C = x | y = C | z = C.
+-oneDigitIsCorrectAndWellPlaced(x,y,z) | A = x | y = B | z = C.
+-oneDigitIsCorrectAndWellPlaced(x,y,z) | A = x | y = B | notTwoDigitsAB(x,y).
+-oneDigitIsCorrectAndWellPlaced(x,y,z) | A = x | notTwoDigitsAC(x,z) | z = C.
+-oneDigitIsCorrectAndWellPlaced(x,y,z) | A = x | notTwoDigitsAC(x,z) | notTwoDigitsAB(x,y).
+-oneDigitIsCorrectAndWellPlaced(x,y,z) | notTwoDigitsBC(y,z) | y = B | z = C.
+-oneDigitIsCorrectAndWellPlaced(x,y,z) | notTwoDigitsBC(y,z) | y = B | notTwoDigitsAB(x,y).
+-oneDigitIsCorrectAndWellPlaced(x,y,z) | notTwoDigitsBC(y,z) | notTwoDigitsAC(x,z) | z = C.
+-oneDigitIsCorrectAndWellPlaced(x,y,z) | notTwoDigitsBC(y,z) | notTwoDigitsAC(x,z) | notTwoDigitsAB(x,y).
+oneDigitIsCorrectAndWellPlaced(x,y,z) | A != x | -notTwoDigitsBC(y,z).
+oneDigitIsCorrectAndWellPlaced(x,y,z) | y != B | -notTwoDigitsAC(x,z).
+oneDigitIsCorrectAndWellPlaced(x,y,z) | z != C | -notTwoDigitsAB(x,y).
+-twoDigitsAreCorrectAndWellPlaced(x,y,z) | A = x | y = B.
+-twoDigitsAreCorrectAndWellPlaced(x,y,z) | A = x | z = C.
+-twoDigitsAreCorrectAndWellPlaced(x,y,z) | y = B | z = C.
+-twoDigitsAreCorrectAndWellPlaced(x,y,z) | z != C | y != B | A != x.
+twoDigitsAreCorrectAndWellPlaced(x,y,z) | A != x | y != B | z = C.
+twoDigitsAreCorrectAndWellPlaced(x,y,z) | A != x | y = B | z != C.
+twoDigitsAreCorrectAndWellPlaced(x,y,z) | A = x | y != B | z != C.
+oneDigitIsCorrectAndWellPlaced(6,8,2).
+oneDigitIsCorrectAndWronglyPlaced(6,1,4).
+twoDigitsAreCorrectAndWronglyPlaced(2,0,6).
+nothingIsCorrect(7,3,8).
+oneDigitIsCorrectAndWronglyPlaced(8,3,0).
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 8.
+
+============================== DOMAIN SIZE 10 ========================
+
+============================== MODEL =================================
+
+interpretation( 10, [number=1, seconds=0], [
+
+        function(A, [ 0 ]),
+
+        function(B, [ 4 ]),
+
+        function(C, [ 2 ]),
+
+        relation(orAB(_), [ 1, 0, 0, 0, 1, 0, 0, 0, 0, 0 ]),
+
+        relation(orAC(_), [ 1, 0, 1, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(orBC(_), [ 0, 0, 1, 0, 1, 0, 0, 0, 0, 0 ]),
+
+        relation(notTwoDigitsAB(_,_), [
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1 ]),
+
+        relation(notTwoDigitsAC(_,_), [
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1 ]),
+
+        relation(notTwoDigitsBC(_,_), [
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1 ]),
+
+        relation(nothingIsCorrect(_,_,_), [
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 0, 1, 1, 1, 1, 1 ]),
+
+        relation(oneDigitIsCorrectAndWellPlaced(_,_,_), [
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(oneDigitIsCorrectAndWronglyPlaced(_,_,_), [
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0 ]),
+
+        relation(twoDigitsAreCorrectAndWellPlaced(_,_,_), [
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(twoDigitsAreCorrectAndWronglyPlaced(_,_,_), [
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 10.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.56 seconds).
+Ground clauses: seen=114595, kept=114595.
+Selections=8, assignments=80, propagations=108186, current_models=1.
+Rewrite_terms=5995872, rewrite_bools=5305123, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=14.
+
+============================== end of statistics =====================
+
+User_CPU=0.57, System_CPU=0.01, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 91 exit (all_models) Wed Dec 13 13:08:16 2023
+The process finished Wed Dec 13 13:08:16 2023

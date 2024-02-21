@@ -1,0 +1,45 @@
+set(arithmetic).
+assign(domain_size, 37).
+assign(max_models, -1).
+
+list(distinct).
+	[A,B,C,D,E,F,G,H,I,J].
+end_of_list.
+
+formulas(assumptions).
+	
+	A<=9 & B<=9 & C<=9 & D<=9 & E<=9 & F<=9 & G<=9 & H<=9 & I<=9 & J<=9. 
+	
+	A>0.
+	
+	%Clue 1:
+	B=A*3 | A=G+3.
+	
+	%Clue 2:
+	B+4=I | B=E+4.
+	
+	%Clue 3:
+	C=J+2 | C=F*3.
+	
+	%Clue 4:
+	D=G*4 | E=D*3.
+	
+	%Clue 5:
+	J=E+1 | D=E*4.
+	
+	%Clue 6:
+	F=B*2 | A=F+4.
+	
+	%Clue 7:
+	G=F+1 | I=G+3.
+	
+	%Clue 8:
+	A=H*2 | H=C*3.
+	
+	%Clue 9:
+	I=H+3 | D=I*2.
+	
+	%Clue 10:
+	H=J+2 | J=C*2.
+
+end_of_list.

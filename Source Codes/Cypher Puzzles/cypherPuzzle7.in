@@ -1,0 +1,36 @@
+set(arithmetic).
+assign(domain_size, 10).
+assign(max_models, -1).
+
+formulas(assumptions).
+	
+	orAB(x) <-> A=x | B=x.
+	orBC(x) <-> B=x | C=x.
+	orAC(x) <-> A=x | C=x.
+	
+	notTwoDigitsAB(x,y) <-> A!=x & A!=y & B!=x & B!=y.
+	notTwoDigitsBC(x,y) <-> B!=x & B!=y & C!=x & C!=y.
+	notTwoDigitsAC(x,y) <-> A!=x & A!=y & C!=x & C!=y.
+	
+	oneDigitIsCorrectAndWronglyPlaced(x,y,z) <-> (B=x & notTwoDigitsAC(y,z)) | (C=x & notTwoDigitsAB(y,z)) | 
+												 (A=y & notTwoDigitsBC(x,z)) | (C=y & notTwoDigitsAB(x,z)) | 
+												 (A=z & notTwoDigitsBC(x,y)) | (B=z & notTwoDigitsAC(x,y)).
+	
+	twoDigitsAreCorrectAndWronglyPlaced(x,y,z) <-> (A!=x & orBC(x) & B!=y & orAC(y)) |
+												   (A!=x & orBC(x) & C!=z & orAB(z)) |
+												   (B!=y & orAC(y) & C!=z & orAB(z)).
+								   
+	nothingIsCorrect(x,y,z) <-> A!=x & A!=y & A!=z & B!=x & B!=y & B!=z & C!=x & C!=y & C!=z.
+	
+	oneDigitIsCorrectAndWellPlaced(x,y,z) <-> (A=x & notTwoDigitsBC(y,z)) | (B=y & notTwoDigitsAC(x,z)) | (C=z & notTwoDigitsAB(x,y)).
+	
+	twoDigitsAreCorrectAndWellPlaced(x,y,z) <-> (A=x & B=y & C!=z) | (A=x & B!=y & C=z) | (A!=x & B=y & C=z).
+	
+	
+	oneDigitIsCorrectAndWellPlaced(6,8,2).
+	oneDigitIsCorrectAndWronglyPlaced(6,1,4).
+	twoDigitsAreCorrectAndWronglyPlaced(2,0,6).
+	nothingIsCorrect(7,3,8).
+	oneDigitIsCorrectAndWronglyPlaced(8,3,0).
+
+end_of_list.

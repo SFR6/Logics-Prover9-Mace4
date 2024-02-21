@@ -1,0 +1,171 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 622 was started by tudorcristea on DESKTOP-C94JCEA,
+Fri Dec  8 19:48:52 2023
+The command was "./mace4 -c -f Puzzles/cypherPuzzle4.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/cypherPuzzle4.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,37).
+    % assign(domain_size, 37) -> assign(start_size, 37).
+    % assign(domain_size, 37) -> assign(end_size, 37).
+assign(max_models,-1).
+
+list(distinct).
+[A,B,C,D,E,F,G,H,I,J].
+end_of_list.
+
+formulas(assumptions).
+A <= 9 & B <= 9 & C <= 9 & D <= 9 & E <= 9 & F <= 9 & G <= 9 & H <= 9 & I <= 9 & J <= 9.
+A > 0.
+B = A * 3 | A = G + 3.
+B + 4 = I | B = E + 4.
+C = J + 2 | C = F * 3.
+D = G * 4 | E = D * 3.
+J = E + 1 | D = E * 4.
+F = B * 2 | A = F + 4.
+G = F + 1 | I = G + 3.
+A = H * 2 | H = C * 3.
+I = H + 3 | D = I * 2.
+H = J + 2 | J = C * 2.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 A <= 9 & B <= 9 & C <= 9 & D <= 9 & E <= 9 & F <= 9 & G <= 9 & H <= 9 & I <= 9 & J <= 9 # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+A <= 9.
+B <= 9.
+C <= 9.
+D <= 9.
+E <= 9.
+F <= 9.
+G <= 9.
+H <= 9.
+I <= 9.
+J <= 9.
+A > 0.
+B = A * 3 | A = G + 3.
+B + 4 = I | B = E + 4.
+C = J + 2 | C = F * 3.
+D = G * 4 | E = D * 3.
+J = E + 1 | D = E * 4.
+F = B * 2 | A = F + 4.
+G = F + 1 | I = G + 3.
+A = H * 2 | H = C * 3.
+I = H + 3 | D = I * 2.
+H = J + 2 | J = C * 2.
+A != B.
+A != C.
+A != D.
+A != E.
+A != F.
+A != G.
+A != H.
+A != I.
+A != J.
+B != C.
+B != D.
+B != E.
+B != F.
+B != G.
+B != H.
+B != I.
+B != J.
+C != D.
+C != E.
+C != F.
+C != G.
+C != H.
+C != I.
+C != J.
+D != E.
+D != F.
+D != G.
+D != H.
+D != I.
+D != J.
+E != F.
+E != G.
+E != H.
+E != I.
+E != J.
+F != G.
+F != H.
+F != I.
+F != J.
+G != H.
+G != I.
+G != J.
+H != I.
+H != J.
+I != J.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 9.
+
+============================== DOMAIN SIZE 37 ========================
+
+============================== MODEL =================================
+
+interpretation( 37, [number=1, seconds=0], [
+
+        function(A, [ 5 ]),
+
+        function(B, [ 0 ]),
+
+        function(C, [ 3 ]),
+
+        function(D, [ 8 ]),
+
+        function(E, [ 6 ]),
+
+        function(F, [ 1 ]),
+
+        function(G, [ 2 ]),
+
+        function(H, [ 9 ]),
+
+        function(I, [ 4 ]),
+
+        function(J, [ 7 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 37.
+
+Current CPU time: 0.00 seconds (total CPU time: 1.05 seconds).
+Ground clauses: seen=66, kept=66.
+Selections=48427, assignments=1791799, propagations=0, current_models=1.
+Rewrite_terms=20636098, rewrite_bools=12198295, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=5854455.
+
+============================== end of statistics =====================
+
+User_CPU=1.05, System_CPU=0.00, Wall_clock=1.
+
+Exiting with 1 model.
+
+Process 622 exit (all_models) Fri Dec  8 19:48:53 2023
+The process finished Fri Dec  8 19:48:53 2023

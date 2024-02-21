@@ -1,0 +1,103 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 2516 was started by tudorcristea on DESKTOP-C94JCEA,
+Sat Nov 25 16:25:24 2023
+The command was "./mace4 -c -f Puzzles/numberPuzzle1.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/numberPuzzle1.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,1001).
+    % assign(domain_size, 1001) -> assign(start_size, 1001).
+    % assign(domain_size, 1001) -> assign(end_size, 1001).
+assign(max_models,1).
+
+list(distinct).
+[A,B,C,D,E].
+[0,A].
+end_of_list.
+
+formulas(assumptions).
+A <= 9 & B <= 9 & C <= 9 & D <= 9 & E <= 9.
+(A * 1000 + B * 100 + C * 10 + D) * E = D * 1000 + C * 100 + B * 10 + A.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 A <= 9 & B <= 9 & C <= 9 & D <= 9 & E <= 9 # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+A <= 9.
+B <= 9.
+C <= 9.
+D <= 9.
+E <= 9.
+(A * 1000 + B * 100 + C * 10 + D) * E = D * 1000 + C * 100 + B * 10 + A.
+A != B.
+A != C.
+A != D.
+A != E.
+B != C.
+B != D.
+B != E.
+C != D.
+C != E.
+D != E.
+0 != A.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 1000.
+
+============================== DOMAIN SIZE 1001 ======================
+
+============================== MODEL =================================
+
+interpretation( 1001, [number=1, seconds=1], [
+
+        function(A, [ 2 ]),
+
+        function(B, [ 1 ]),
+
+        function(C, [ 7 ]),
+
+        function(D, [ 8 ]),
+
+        function(E, [ 4 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 1001.
+
+Current CPU time: 0.00 seconds (total CPU time: 1.78 seconds).
+Ground clauses: seen=17, kept=17.
+Selections=701, assignments=696723, propagations=0, current_models=1.
+Rewrite_terms=3668733, rewrite_bools=3368914, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=107843.
+
+============================== end of statistics =====================
+
+User_CPU=1.78, System_CPU=0.04, Wall_clock=2.
+
+Exiting with 1 model.
+
+Process 2516 exit (max_models) Sat Nov 25 16:25:26 2023
+The process finished Sat Nov 25 16:25:26 2023

@@ -1,0 +1,125 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 32 was started by tudorcristea on DESKTOP-C94JCEA,
+Tue Dec 12 20:04:58 2023
+The command was "./mace4 -c -f Puzzles/logicPuzzle1.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/logicPuzzle1.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,56).
+    % assign(domain_size, 56) -> assign(start_size, 56).
+    % assign(domain_size, 56) -> assign(end_size, 56).
+assign(max_models,-1).
+
+list(distinct).
+[Alex,Brook,Cody,Dusty,Erin].
+end_of_list.
+
+formulas(assumptions).
+Dusty < Brook <-> Dusty = Erin + 9.
+Erin < Brook <-> Erin = Alex + 7.
+Alex < Brook <-> Alex * 17 = Brook * 10.
+Brook < Cody <-> Erin < Cody.
+Brook < Cody <-> abs(Cody + -Dusty) = abs(Dusty + -Erin).
+Cody < Dusty <-> Cody = Dusty + 6 | Dusty = Cody + 6.
+Cody < Alex <-> Cody = Alex + 10.
+Cody < Alex <-> Brook < Dusty.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Dusty < Brook <-> Dusty = Erin + 9 # label(non_clause).  [assumption].
+2 Erin < Brook <-> Erin = Alex + 7 # label(non_clause).  [assumption].
+3 Alex < Brook <-> Alex * 17 = Brook * 10 # label(non_clause).  [assumption].
+4 Brook < Cody <-> Erin < Cody # label(non_clause).  [assumption].
+5 Brook < Cody <-> abs(Cody + -Dusty) = abs(Dusty + -Erin) # label(non_clause).  [assumption].
+6 Cody < Dusty <-> Cody = Dusty + 6 | Dusty = Cody + 6 # label(non_clause).  [assumption].
+7 Cody < Alex <-> Cody = Alex + 10 # label(non_clause).  [assumption].
+8 Cody < Alex <-> Brook < Dusty # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+-(Dusty < Brook) | Erin + 9 = Dusty.
+Dusty < Brook | Erin + 9 != Dusty.
+-(Erin < Brook) | Alex + 7 = Erin.
+Erin < Brook | Alex + 7 != Erin.
+-(Alex < Brook) | Brook * 10 = Alex * 17.
+Alex < Brook | Brook * 10 != Alex * 17.
+-(Brook < Cody) | Erin < Cody.
+Brook < Cody | -(Erin < Cody).
+-(Brook < Cody) | abs(Dusty + -Erin) = abs(Cody + -Dusty).
+Brook < Cody | abs(Dusty + -Erin) != abs(Cody + -Dusty).
+-(Cody < Dusty) | Dusty + 6 = Cody | Cody + 6 = Dusty.
+Cody < Dusty | Dusty + 6 != Cody.
+Cody < Dusty | Cody + 6 != Dusty.
+-(Cody < Alex) | Alex + 10 = Cody.
+Cody < Alex | Alex + 10 != Cody.
+-(Cody < Alex) | Brook < Dusty.
+Cody < Alex | -(Brook < Dusty).
+Alex != Brook.
+Alex != Cody.
+Alex != Dusty.
+Alex != Erin.
+Brook != Cody.
+Brook != Dusty.
+Brook != Erin.
+Cody != Dusty.
+Cody != Erin.
+Dusty != Erin.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 17.
+
+============================== DOMAIN SIZE 56 ========================
+
+============================== MODEL =================================
+
+interpretation( 56, [number=1, seconds=2], [
+
+        function(Alex, [30 ]),
+
+        function(Brook, [51 ]),
+
+        function(Cody, [55 ]),
+
+        function(Dusty, [46 ]),
+
+        function(Erin, [37 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 56.
+
+Current CPU time: 0.00 seconds (total CPU time: 6.29 seconds).
+Ground clauses: seen=27, kept=27.
+Selections=382587, assignments=21424872, propagations=0, current_models=1.
+Rewrite_terms=128777556, rewrite_bools=104950572, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=1595660.
+
+============================== end of statistics =====================
+
+User_CPU=6.29, System_CPU=0.06, Wall_clock=6.
+
+Exiting with 1 model.
+
+Process 32 exit (all_models) Tue Dec 12 20:05:04 2023
+The process finished Tue Dec 12 20:05:04 2023

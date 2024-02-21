@@ -1,0 +1,525 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 2062 was started by tudorcristea on DESKTOP-C94JCEA,
+Sat Nov 25 14:23:29 2023
+The command was "./mace4 -c -f Puzzles/einsteinPuzzle2.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/einsteinPuzzle2.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,8).
+    % assign(domain_size, 8) -> assign(start_size, 8).
+    % assign(domain_size, 8) -> assign(end_size, 8).
+assign(max_models,1).
+
+list(distinct).
+[Black,Horricks,Smith,Kuril,Cermak,Zajac,Swain,Dvorak].
+[Daniella,Victoria,Hannah,Jenny,Monica,Irene,Pamela,Veronica].
+[Matthew,Owen,Stan,Robert,Alexander,Oto,Paul,Rick].
+[ShopAssistant,Doctor,Agriculturist,WarehouseManager,TicketCollector,Accountant,Shopper,Teacher].
+[Trabant,Skoda,Moskvic,Wartburg,Dacia,Fiat,Renault,Ziguli].
+[Pink,Brown,White,Yellow,Violet,Red,Green,Blue].
+[MulatkaGabriela,TheModernComedy,DameCommissar,WeWereFive,ShedStoat,TheSeadog,GrandfatherJoseph,SlovackoJudge].
+end_of_list.
+
+formulas(assumptions).
+brought(x,y) & brought(z,y) -> x = z.
+brought(x,y) & brought(x,z) -> y = z.
+brought(x,y) -> -borrowed(x,y).
+borrowed(x,y) & borrowed(z,y) -> x = z.
+borrowed(x,y) & borrowed(x,z) -> y = z.
+borrowed(x,y) -> -brought(x,y).
+Daniella = Black & Daniella = ShopAssistant.
+(exists x (brought(x,TheSeadog) & x = Fiat & x = Red)).
+Owen = Victoria & Owen = Brown.
+Stan = Horricks & Stan = Hannah & Stan = White.
+Jenny = Smith & Jenny = WarehouseManager & Jenny = Wartburg.
+Monica = Alexander & borrowed(Monica,GrandfatherJoseph).
+Matthew = Pink & brought(Matthew,MulatkaGabriela).
+Irene = Oto & Irene = Accountant.
+(exists x (borrowed(x,WeWereFive) & x = Trabant)) & brought(Smith,WeWereFive).
+Cermak = TicketCollector & brought(Cermak,ShedStoat) & borrowed(Zajac,ShedStoat).
+Kuril = Doctor & borrowed(Kuril,SlovackoJudge).
+Paul = Green.
+Veronica = Dvorak & Veronica = Blue.
+brought(Rick,SlovackoJudge) & Rick = Ziguli.
+(exists x (brought(x,DameCommissar) & borrowed(x,MulatkaGabriela))).
+Dacia = Violet.
+(exists x (x = Teacher & borrowed(x,DameCommissar))).
+Agriculturist = Moskvic.
+Pamela = Renault & brought(Pamela,GrandfatherJoseph).
+(exists y (brought(Zajac,y) & borrowed(Pamela,y))).
+Robert = Yellow & borrowed(Robert,TheModernComedy).
+Swain = Shopper.
+(exists x (brought(x,TheModernComedy) & x = Skoda)).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 brought(x,y) & brought(z,y) -> x = z # label(non_clause).  [assumption].
+2 brought(x,y) & brought(x,z) -> y = z # label(non_clause).  [assumption].
+3 brought(x,y) -> -borrowed(x,y) # label(non_clause).  [assumption].
+4 borrowed(x,y) & borrowed(z,y) -> x = z # label(non_clause).  [assumption].
+5 borrowed(x,y) & borrowed(x,z) -> y = z # label(non_clause).  [assumption].
+6 borrowed(x,y) -> -brought(x,y) # label(non_clause).  [assumption].
+7 Daniella = Black & Daniella = ShopAssistant # label(non_clause).  [assumption].
+8 (exists x (brought(x,TheSeadog) & x = Fiat & x = Red)) # label(non_clause).  [assumption].
+9 Owen = Victoria & Owen = Brown # label(non_clause).  [assumption].
+10 Stan = Horricks & Stan = Hannah & Stan = White # label(non_clause).  [assumption].
+11 Jenny = Smith & Jenny = WarehouseManager & Jenny = Wartburg # label(non_clause).  [assumption].
+12 Monica = Alexander & borrowed(Monica,GrandfatherJoseph) # label(non_clause).  [assumption].
+13 Matthew = Pink & brought(Matthew,MulatkaGabriela) # label(non_clause).  [assumption].
+14 Irene = Oto & Irene = Accountant # label(non_clause).  [assumption].
+15 (exists x (borrowed(x,WeWereFive) & x = Trabant)) & brought(Smith,WeWereFive) # label(non_clause).  [assumption].
+16 Cermak = TicketCollector & brought(Cermak,ShedStoat) & borrowed(Zajac,ShedStoat) # label(non_clause).  [assumption].
+17 Kuril = Doctor & borrowed(Kuril,SlovackoJudge) # label(non_clause).  [assumption].
+18 Veronica = Dvorak & Veronica = Blue # label(non_clause).  [assumption].
+19 brought(Rick,SlovackoJudge) & Rick = Ziguli # label(non_clause).  [assumption].
+20 (exists x (brought(x,DameCommissar) & borrowed(x,MulatkaGabriela))) # label(non_clause).  [assumption].
+21 (exists x (x = Teacher & borrowed(x,DameCommissar))) # label(non_clause).  [assumption].
+22 Pamela = Renault & brought(Pamela,GrandfatherJoseph) # label(non_clause).  [assumption].
+23 (exists y (brought(Zajac,y) & borrowed(Pamela,y))) # label(non_clause).  [assumption].
+24 Robert = Yellow & borrowed(Robert,TheModernComedy) # label(non_clause).  [assumption].
+25 (exists x (brought(x,TheModernComedy) & x = Skoda)) # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+-brought(x,y) | -brought(z,y) | z = x.
+-brought(x,y) | -brought(x,z) | z = y.
+-brought(x,y) | -borrowed(x,y).
+-borrowed(x,y) | -borrowed(z,y) | z = x.
+-borrowed(x,y) | -borrowed(x,z) | z = y.
+-borrowed(x,y) | -brought(x,y).
+Daniella = Black.
+ShopAssistant = Daniella.
+brought(c1,TheSeadog).
+c1 = Fiat.
+c1 = Red.
+Owen = Victoria.
+Brown = Owen.
+Stan = Horricks.
+Stan = Hannah.
+White = Stan.
+Jenny = Smith.
+WarehouseManager = Jenny.
+Wartburg = Jenny.
+Alexander = Monica.
+borrowed(Monica,GrandfatherJoseph).
+Pink = Matthew.
+brought(Matthew,MulatkaGabriela).
+Oto = Irene.
+Accountant = Irene.
+borrowed(c2,WeWereFive).
+c2 = Trabant.
+brought(Smith,WeWereFive).
+TicketCollector = Cermak.
+brought(Cermak,ShedStoat).
+borrowed(Zajac,ShedStoat).
+Doctor = Kuril.
+borrowed(Kuril,SlovackoJudge).
+Paul = Green.
+Veronica = Dvorak.
+Blue = Veronica.
+brought(Rick,SlovackoJudge).
+Ziguli = Rick.
+brought(c3,DameCommissar).
+borrowed(c3,MulatkaGabriela).
+Dacia = Violet.
+c4 = Teacher.
+borrowed(c4,DameCommissar).
+Agriculturist = Moskvic.
+Renault = Pamela.
+brought(Pamela,GrandfatherJoseph).
+brought(Zajac,c5).
+borrowed(Pamela,c5).
+Yellow = Robert.
+borrowed(Robert,TheModernComedy).
+Swain = Shopper.
+brought(c6,TheModernComedy).
+c6 = Skoda.
+Black != Horricks.
+Black != Smith.
+Black != Kuril.
+Black != Cermak.
+Black != Zajac.
+Black != Swain.
+Black != Dvorak.
+Horricks != Smith.
+Horricks != Kuril.
+Horricks != Cermak.
+Horricks != Zajac.
+Horricks != Swain.
+Horricks != Dvorak.
+Smith != Kuril.
+Smith != Cermak.
+Smith != Zajac.
+Smith != Swain.
+Smith != Dvorak.
+Kuril != Cermak.
+Kuril != Zajac.
+Kuril != Swain.
+Kuril != Dvorak.
+Cermak != Zajac.
+Cermak != Swain.
+Cermak != Dvorak.
+Zajac != Swain.
+Zajac != Dvorak.
+Swain != Dvorak.
+Daniella != Victoria.
+Daniella != Hannah.
+Daniella != Jenny.
+Daniella != Monica.
+Daniella != Irene.
+Daniella != Pamela.
+Daniella != Veronica.
+Victoria != Hannah.
+Victoria != Jenny.
+Victoria != Monica.
+Victoria != Irene.
+Victoria != Pamela.
+Victoria != Veronica.
+Hannah != Jenny.
+Hannah != Monica.
+Hannah != Irene.
+Hannah != Pamela.
+Hannah != Veronica.
+Jenny != Monica.
+Jenny != Irene.
+Jenny != Pamela.
+Jenny != Veronica.
+Monica != Irene.
+Monica != Pamela.
+Monica != Veronica.
+Irene != Pamela.
+Irene != Veronica.
+Pamela != Veronica.
+Matthew != Owen.
+Matthew != Stan.
+Matthew != Robert.
+Matthew != Alexander.
+Matthew != Oto.
+Matthew != Paul.
+Matthew != Rick.
+Owen != Stan.
+Owen != Robert.
+Owen != Alexander.
+Owen != Oto.
+Owen != Paul.
+Owen != Rick.
+Stan != Robert.
+Stan != Alexander.
+Stan != Oto.
+Stan != Paul.
+Stan != Rick.
+Robert != Alexander.
+Robert != Oto.
+Robert != Paul.
+Robert != Rick.
+Alexander != Oto.
+Alexander != Paul.
+Alexander != Rick.
+Oto != Paul.
+Oto != Rick.
+Paul != Rick.
+ShopAssistant != Doctor.
+ShopAssistant != Agriculturist.
+ShopAssistant != WarehouseManager.
+ShopAssistant != TicketCollector.
+ShopAssistant != Accountant.
+ShopAssistant != Shopper.
+ShopAssistant != Teacher.
+Doctor != Agriculturist.
+Doctor != WarehouseManager.
+Doctor != TicketCollector.
+Doctor != Accountant.
+Doctor != Shopper.
+Doctor != Teacher.
+Agriculturist != WarehouseManager.
+Agriculturist != TicketCollector.
+Agriculturist != Accountant.
+Agriculturist != Shopper.
+Agriculturist != Teacher.
+WarehouseManager != TicketCollector.
+WarehouseManager != Accountant.
+WarehouseManager != Shopper.
+WarehouseManager != Teacher.
+TicketCollector != Accountant.
+TicketCollector != Shopper.
+TicketCollector != Teacher.
+Accountant != Shopper.
+Accountant != Teacher.
+Shopper != Teacher.
+Trabant != Skoda.
+Trabant != Moskvic.
+Trabant != Wartburg.
+Trabant != Dacia.
+Trabant != Fiat.
+Trabant != Renault.
+Trabant != Ziguli.
+Skoda != Moskvic.
+Skoda != Wartburg.
+Skoda != Dacia.
+Skoda != Fiat.
+Skoda != Renault.
+Skoda != Ziguli.
+Moskvic != Wartburg.
+Moskvic != Dacia.
+Moskvic != Fiat.
+Moskvic != Renault.
+Moskvic != Ziguli.
+Wartburg != Dacia.
+Wartburg != Fiat.
+Wartburg != Renault.
+Wartburg != Ziguli.
+Dacia != Fiat.
+Dacia != Renault.
+Dacia != Ziguli.
+Fiat != Renault.
+Fiat != Ziguli.
+Renault != Ziguli.
+Pink != Brown.
+Pink != White.
+Pink != Yellow.
+Pink != Violet.
+Pink != Red.
+Pink != Green.
+Pink != Blue.
+Brown != White.
+Brown != Yellow.
+Brown != Violet.
+Brown != Red.
+Brown != Green.
+Brown != Blue.
+White != Yellow.
+White != Violet.
+White != Red.
+White != Green.
+White != Blue.
+Yellow != Violet.
+Yellow != Red.
+Yellow != Green.
+Yellow != Blue.
+Violet != Red.
+Violet != Green.
+Violet != Blue.
+Red != Green.
+Red != Blue.
+Green != Blue.
+MulatkaGabriela != TheModernComedy.
+MulatkaGabriela != DameCommissar.
+MulatkaGabriela != WeWereFive.
+MulatkaGabriela != ShedStoat.
+MulatkaGabriela != TheSeadog.
+MulatkaGabriela != GrandfatherJoseph.
+MulatkaGabriela != SlovackoJudge.
+TheModernComedy != DameCommissar.
+TheModernComedy != WeWereFive.
+TheModernComedy != ShedStoat.
+TheModernComedy != TheSeadog.
+TheModernComedy != GrandfatherJoseph.
+TheModernComedy != SlovackoJudge.
+DameCommissar != WeWereFive.
+DameCommissar != ShedStoat.
+DameCommissar != TheSeadog.
+DameCommissar != GrandfatherJoseph.
+DameCommissar != SlovackoJudge.
+WeWereFive != ShedStoat.
+WeWereFive != TheSeadog.
+WeWereFive != GrandfatherJoseph.
+WeWereFive != SlovackoJudge.
+ShedStoat != TheSeadog.
+ShedStoat != GrandfatherJoseph.
+ShedStoat != SlovackoJudge.
+TheSeadog != GrandfatherJoseph.
+TheSeadog != SlovackoJudge.
+GrandfatherJoseph != SlovackoJudge.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no natural numbers in the input.
+
+============================== DOMAIN SIZE 8 =========================
+
+============================== MODEL =================================
+
+interpretation( 8, [number=1, seconds=2], [
+
+        function(Accountant, [ 0 ]),
+
+        function(Agriculturist, [ 1 ]),
+
+        function(Alexander, [ 6 ]),
+
+        function(Black, [ 3 ]),
+
+        function(Blue, [ 5 ]),
+
+        function(Brown, [ 2 ]),
+
+        function(Cermak, [ 6 ]),
+
+        function(Dacia, [ 6 ]),
+
+        function(DameCommissar, [ 0 ]),
+
+        function(Daniella, [ 3 ]),
+
+        function(Doctor, [ 2 ]),
+
+        function(Dvorak, [ 5 ]),
+
+        function(Fiat, [ 0 ]),
+
+        function(GrandfatherJoseph, [ 1 ]),
+
+        function(Green, [ 4 ]),
+
+        function(Hannah, [ 1 ]),
+
+        function(Horricks, [ 1 ]),
+
+        function(Irene, [ 0 ]),
+
+        function(Jenny, [ 7 ]),
+
+        function(Kuril, [ 2 ]),
+
+        function(Matthew, [ 3 ]),
+
+        function(Monica, [ 6 ]),
+
+        function(Moskvic, [ 1 ]),
+
+        function(MulatkaGabriela, [ 2 ]),
+
+        function(Oto, [ 0 ]),
+
+        function(Owen, [ 2 ]),
+
+        function(Pamela, [ 4 ]),
+
+        function(Paul, [ 4 ]),
+
+        function(Pink, [ 3 ]),
+
+        function(Red, [ 0 ]),
+
+        function(Renault, [ 4 ]),
+
+        function(Rick, [ 5 ]),
+
+        function(Robert, [ 7 ]),
+
+        function(ShedStoat, [ 3 ]),
+
+        function(ShopAssistant, [ 3 ]),
+
+        function(Shopper, [ 4 ]),
+
+        function(Skoda, [ 2 ]),
+
+        function(SlovackoJudge, [ 4 ]),
+
+        function(Smith, [ 7 ]),
+
+        function(Stan, [ 1 ]),
+
+        function(Swain, [ 4 ]),
+
+        function(Teacher, [ 5 ]),
+
+        function(TheModernComedy, [ 5 ]),
+
+        function(TheSeadog, [ 6 ]),
+
+        function(TicketCollector, [ 6 ]),
+
+        function(Trabant, [ 3 ]),
+
+        function(Veronica, [ 5 ]),
+
+        function(Victoria, [ 2 ]),
+
+        function(Violet, [ 6 ]),
+
+        function(WarehouseManager, [ 7 ]),
+
+        function(Wartburg, [ 7 ]),
+
+        function(WeWereFive, [ 7 ]),
+
+        function(White, [ 1 ]),
+
+        function(Yellow, [ 7 ]),
+
+        function(Zajac, [ 0 ]),
+
+        function(Ziguli, [ 5 ]),
+
+        function(c1, [ 0 ]),
+
+        function(c2, [ 3 ]),
+
+        function(c3, [ 1 ]),
+
+        function(c4, [ 5 ]),
+
+        function(c5, [ 6 ]),
+
+        function(c6, [ 2 ]),
+
+        relation(borrowed(_,_), [
+			   0, 0, 0, 1, 0, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 1,
+			   0, 0, 0, 0, 0, 0, 1, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 1, 0, 0 ]),
+
+        relation(brought(_,_), [
+			   0, 0, 0, 0, 0, 0, 1, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 1, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 1, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 0,
+			   0, 0, 0, 1, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 1 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 8.
+
+Current CPU time: 0.00 seconds (total CPU time: 2.06 seconds).
+Ground clauses: seen=2419, kept=2163.
+Selections=69631, assignments=556953, propagations=3582515, current_models=1.
+Rewrite_terms=4120112, rewrite_bools=47399851, indexes=635347.
+Rules_from_neg_clauses=194096, cross_offs=2088484.
+
+============================== end of statistics =====================
+
+User_CPU=2.06, System_CPU=0.01, Wall_clock=2.
+
+Exiting with 1 model.
+
+Process 2062 exit (max_models) Sat Nov 25 14:23:31 2023
+The process finished Sat Nov 25 14:23:31 2023

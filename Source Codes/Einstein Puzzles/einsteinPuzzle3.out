@@ -1,0 +1,336 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 235 was started by tudorcristea on DESKTOP-C94JCEA,
+Wed Dec 20 20:48:12 2023
+The command was "./mace4 -c -f Puzzles/einsteinPuzzle1.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/einsteinPuzzle1.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,12).
+    % assign(domain_size, 12) -> assign(start_size, 12).
+    % assign(domain_size, 12) -> assign(end_size, 12).
+assign(max_models,1).
+
+list(distinct).
+[Paul,Hank,Luke,Sam,Zick].
+end_of_list.
+
+formulas(assumptions).
+Apple = 0.
+Pear = 1.
+Nut = 2.
+Cherry = 3.
+Carrot = 4.
+Parsley = 5.
+Gourd = 6.
+Onion = 7.
+Aster = 8.
+Rose = 9.
+Tulip = 10.
+Lily = 11.
+inGarden(y,x) < 2.
+y = 0 | y > 5 -> inGarden(y,x) = 0.
+y >= 1 & y <= 5 -> inGarden(y,0) + inGarden(y,1) + inGarden(y,2) + inGarden(y,3) + inGarden(y,4) + inGarden(y,5) + inGarden(y,6) + inGarden(y,7) + inGarden(y,8) + inGarden(y,9) + inGarden(y,10) + inGarden(y,11) = 4.
+fruit(x) <-> x = Apple | x = Pear | x = Nut | x = Cherry.
+vegetable(x) <-> x = Carrot | x = Parsley | x = Gourd | x = Onion.
+flower(x) <-> x = Aster | x = Rose | x = Tulip | x = Lily.
+validGarden(y) <-> y >= 1 & y <= 5.
+validGarden(Paul) & validGarden(Hank) & validGarden(Luke) & validGarden(Sam) & validGarden(Zick).
+validGarden(y) -> inGarden(y,0) + inGarden(y,1) + inGarden(y,2) + inGarden(y,3) + inGarden(y,4) + inGarden(y,5) + inGarden(y,6) + inGarden(y,7) + inGarden(y,8) + inGarden(y,9) + inGarden(y,10) + inGarden(y,11) = 4.
+inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) >= 1.
+inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) < 5.
+(exists x inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) = 4).
+inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) = 4 & inGarden(1,y) + inGarden(2,y) + inGarden(3,y) + inGarden(4,y) + inGarden(5,y) = 4 -> y = x.
+(exists x (fruit(x) & inGarden(Sam,x) = 1)).
+(exists y (vegetable(y) & inGarden(Sam,y) = 1)).
+(exists z1 exists z2 (z1 < z2 & flower(z1) & flower(z2) & inGarden(Sam,z1) + inGarden(Sam,z2) = 2)).
+(fruit(x) -> inGarden(1,x) = 1) | (vegetable(y) -> inGarden(1,y) = 1) | (flower(z) -> inGarden(1,z) = 1) | (fruit(x) -> inGarden(2,x) = 1) | (vegetable(y) -> inGarden(2,y) = 1) | (flower(z) -> inGarden(2,z) = 1) | (fruit(x) -> inGarden(3,x) = 1) | (vegetable(y) -> inGarden(3,y) = 1) | (flower(z) -> inGarden(3,z) = 1) | (fruit(x) -> inGarden(4,x) = 1) | (vegetable(y) -> inGarden(4,y) = 1) | (flower(z) -> inGarden(4,z) = 1) | (fruit(x) -> inGarden(5,x) = 1) | (vegetable(y) -> inGarden(5,y) = 1) | (flower(z) -> inGarden(5,z) = 1).
+inGarden(1,Pear) = 1.
+inGarden(2,Pear) = 0.
+inGarden(3,Pear) = 0.
+inGarden(4,Pear) = 0.
+inGarden(5,Pear) = 1.
+Paul = 3.
+inGarden(3,Lily) = 0.
+inGarden(1,Aster) + inGarden(2,Aster) + inGarden(3,Aster) + inGarden(4,Aster) + inGarden(5,Aster) = 1.
+validGarden(y) & vegetable(x) & inGarden(y,x) = 1 -> inGarden(y,Aster) = 0.
+validGarden(y) & inGarden(y,Rose) = 1 -> inGarden(y,Parsley) = 0.
+inGarden(1,Nut) + inGarden(2,Nut) + inGarden(3,Nut) + inGarden(4,Nut) + inGarden(5,Nut) = 1.
+validGarden(y) & inGarden(y,Nut) = 1 -> inGarden(y,Gourd) = 1 & inGarden(y,Parsley) = 1.
+inGarden(1,Apple) = 1 & inGarden(1,Cherry) = 1.
+inGarden(1,Cherry) + inGarden(2,Cherry) + inGarden(3,Cherry) + inGarden(4,Cherry) + inGarden(5,Cherry) = 2.
+inGarden(Sam,Cherry) = 1 & inGarden(Sam,Onion) = 1.
+inGarden(Luke,0) + inGarden(Luke,1) + inGarden(Luke,2) + inGarden(Luke,3) = 2.
+inGarden(1,Tulip) + inGarden(2,Tulip) + inGarden(3,Tulip) + inGarden(4,Tulip) + inGarden(5,Tulip) = 2.
+inGarden(1,Apple) + inGarden(2,Apple) + inGarden(3,Apple) + inGarden(4,Apple) + inGarden(5,Apple) = 1.
+inGarden(1,Parsley) + inGarden(2,Parsley) + inGarden(3,Parsley) + inGarden(4,Parsley) + inGarden(5,Parsley) = 1.
+inGarden(Zick,Parsley) = 0.
+Zick = 1 -> inGarden(2,Parsley) = 1.
+Zick = 2 -> inGarden(1,Parsley) = 1 | inGarden(3,Parsley) = 1.
+Zick = 4 -> inGarden(3,Parsley) = 1 | inGarden(5,Parsley) = 1.
+Zick = 5 -> inGarden(4,Parsley) = 1.
+Sam != 1 & Sam != 5.
+vegetable(x) -> inGarden(Hank,x) = 0.
+inGarden(Hank,Aster) = 0.
+(exists x1 exists x2 exists x3 exists x4 (x1 < x2 & x2 < x3 & x4 != x1 & x4 != x2 & x4 != x3 & vegetable(x1) & vegetable(x2) & vegetable(x3) & -vegetable(x4) & inGarden(Paul,x1) = 1 & inGarden(Paul,x2) = 1 & inGarden(Paul,x3) = 1 & inGarden(Paul,x4) = 1)).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 y = 0 | y > 5 -> inGarden(y,x) = 0 # label(non_clause).  [assumption].
+2 y >= 1 & y <= 5 -> inGarden(y,0) + inGarden(y,1) + inGarden(y,2) + inGarden(y,3) + inGarden(y,4) + inGarden(y,5) + inGarden(y,6) + inGarden(y,7) + inGarden(y,8) + inGarden(y,9) + inGarden(y,10) + inGarden(y,11) = 4 # label(non_clause).  [assumption].
+3 fruit(x) <-> x = Apple | x = Pear | x = Nut | x = Cherry # label(non_clause).  [assumption].
+4 vegetable(x) <-> x = Carrot | x = Parsley | x = Gourd | x = Onion # label(non_clause).  [assumption].
+5 flower(x) <-> x = Aster | x = Rose | x = Tulip | x = Lily # label(non_clause).  [assumption].
+6 validGarden(y) <-> y >= 1 & y <= 5 # label(non_clause).  [assumption].
+7 validGarden(Paul) & validGarden(Hank) & validGarden(Luke) & validGarden(Sam) & validGarden(Zick) # label(non_clause).  [assumption].
+8 validGarden(y) -> inGarden(y,0) + inGarden(y,1) + inGarden(y,2) + inGarden(y,3) + inGarden(y,4) + inGarden(y,5) + inGarden(y,6) + inGarden(y,7) + inGarden(y,8) + inGarden(y,9) + inGarden(y,10) + inGarden(y,11) = 4 # label(non_clause).  [assumption].
+9 (exists x inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) = 4) # label(non_clause).  [assumption].
+10 inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) = 4 & inGarden(1,y) + inGarden(2,y) + inGarden(3,y) + inGarden(4,y) + inGarden(5,y) = 4 -> y = x # label(non_clause).  [assumption].
+11 (exists x (fruit(x) & inGarden(Sam,x) = 1)) # label(non_clause).  [assumption].
+12 (exists y (vegetable(y) & inGarden(Sam,y) = 1)) # label(non_clause).  [assumption].
+13 (exists z1 exists z2 (z1 < z2 & flower(z1) & flower(z2) & inGarden(Sam,z1) + inGarden(Sam,z2) = 2)) # label(non_clause).  [assumption].
+14 (fruit(x) -> inGarden(1,x) = 1) | (vegetable(y) -> inGarden(1,y) = 1) | (flower(z) -> inGarden(1,z) = 1) | (fruit(x) -> inGarden(2,x) = 1) | (vegetable(y) -> inGarden(2,y) = 1) | (flower(z) -> inGarden(2,z) = 1) | (fruit(x) -> inGarden(3,x) = 1) | (vegetable(y) -> inGarden(3,y) = 1) | (flower(z) -> inGarden(3,z) = 1) | (fruit(x) -> inGarden(4,x) = 1) | (vegetable(y) -> inGarden(4,y) = 1) | (flower(z) -> inGarden(4,z) = 1) | (fruit(x) -> inGarden(5,x) = 1) | (vegetable(y) -> inGarden(5,y) = 1) | (flower(z) -> inGarden(5,z) = 1) # label(non_clause).  [assumption].
+15 validGarden(y) & vegetable(x) & inGarden(y,x) = 1 -> inGarden(y,Aster) = 0 # label(non_clause).  [assumption].
+16 validGarden(y) & inGarden(y,Rose) = 1 -> inGarden(y,Parsley) = 0 # label(non_clause).  [assumption].
+17 validGarden(y) & inGarden(y,Nut) = 1 -> inGarden(y,Gourd) = 1 & inGarden(y,Parsley) = 1 # label(non_clause).  [assumption].
+18 inGarden(1,Apple) = 1 & inGarden(1,Cherry) = 1 # label(non_clause).  [assumption].
+19 inGarden(Sam,Cherry) = 1 & inGarden(Sam,Onion) = 1 # label(non_clause).  [assumption].
+20 Zick = 1 -> inGarden(2,Parsley) = 1 # label(non_clause).  [assumption].
+21 Zick = 2 -> inGarden(1,Parsley) = 1 | inGarden(3,Parsley) = 1 # label(non_clause).  [assumption].
+22 Zick = 4 -> inGarden(3,Parsley) = 1 | inGarden(5,Parsley) = 1 # label(non_clause).  [assumption].
+23 Zick = 5 -> inGarden(4,Parsley) = 1 # label(non_clause).  [assumption].
+24 Sam != 1 & Sam != 5 # label(non_clause).  [assumption].
+25 vegetable(x) -> inGarden(Hank,x) = 0 # label(non_clause).  [assumption].
+26 (exists x1 exists x2 exists x3 exists x4 (x1 < x2 & x2 < x3 & x4 != x1 & x4 != x2 & x4 != x3 & vegetable(x1) & vegetable(x2) & vegetable(x3) & -vegetable(x4) & inGarden(Paul,x1) = 1 & inGarden(Paul,x2) = 1 & inGarden(Paul,x3) = 1 & inGarden(Paul,x4) = 1)) # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+Apple = 0.
+Pear = 1.
+Nut = 2.
+Cherry = 3.
+Carrot = 4.
+Parsley = 5.
+Gourd = 6.
+Onion = 7.
+Aster = 8.
+Rose = 9.
+Tulip = 10.
+Lily = 11.
+inGarden(x,y) < 2.
+x != 0 | inGarden(x,y) = 0.
+-(x > 5) | inGarden(x,y) = 0.
+-(x >= 1) | -(x <= 5) | inGarden(x,0) + inGarden(x,1) + inGarden(x,2) + inGarden(x,3) + inGarden(x,4) + inGarden(x,5) + inGarden(x,6) + inGarden(x,7) + inGarden(x,8) + inGarden(x,9) + inGarden(x,10) + inGarden(x,11) = 4.
+-fruit(x) | x = Apple | x = Pear | x = Nut | x = Cherry.
+fruit(x) | x != Apple.
+fruit(x) | x != Pear.
+fruit(x) | x != Nut.
+fruit(x) | x != Cherry.
+-vegetable(x) | x = Carrot | x = Parsley | x = Gourd | x = Onion.
+vegetable(x) | x != Carrot.
+vegetable(x) | x != Parsley.
+vegetable(x) | x != Gourd.
+vegetable(x) | x != Onion.
+-flower(x) | x = Aster | x = Rose | x = Tulip | x = Lily.
+flower(x) | x != Aster.
+flower(x) | x != Rose.
+flower(x) | x != Tulip.
+flower(x) | x != Lily.
+-validGarden(x) | x >= 1.
+-validGarden(x) | x <= 5.
+validGarden(x) | -(x >= 1) | -(x <= 5).
+validGarden(Paul).
+validGarden(Hank).
+validGarden(Luke).
+validGarden(Sam).
+validGarden(Zick).
+-validGarden(x) | inGarden(x,0) + inGarden(x,1) + inGarden(x,2) + inGarden(x,3) + inGarden(x,4) + inGarden(x,5) + inGarden(x,6) + inGarden(x,7) + inGarden(x,8) + inGarden(x,9) + inGarden(x,10) + inGarden(x,11) = 4.
+inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) >= 1.
+inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) < 5.
+inGarden(1,c1) + inGarden(2,c1) + inGarden(3,c1) + inGarden(4,c1) + inGarden(5,c1) = 4.
+inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) != 4 | inGarden(1,y) + inGarden(2,y) + inGarden(3,y) + inGarden(4,y) + inGarden(5,y) != 4 | x = y.
+fruit(c2).
+inGarden(Sam,c2) = 1.
+vegetable(c3).
+inGarden(Sam,c3) = 1.
+c4 < c5.
+flower(c4).
+flower(c5).
+inGarden(Sam,c4) + inGarden(Sam,c5) = 2.
+-fruit(x) | inGarden(1,x) = 1 | -vegetable(y) | inGarden(1,y) = 1 | -flower(z) | inGarden(1,z) = 1 | inGarden(2,x) = 1 | inGarden(2,y) = 1 | inGarden(2,z) = 1 | inGarden(3,x) = 1 | inGarden(3,y) = 1 | inGarden(3,z) = 1 | inGarden(4,x) = 1 | inGarden(4,y) = 1 | inGarden(4,z) = 1 | inGarden(5,x) = 1 | inGarden(5,y) = 1 | inGarden(5,z) = 1.
+inGarden(1,Pear) = 1.
+inGarden(2,Pear) = 0.
+inGarden(3,Pear) = 0.
+inGarden(4,Pear) = 0.
+inGarden(5,Pear) = 1.
+Paul = 3.
+inGarden(3,Lily) = 0.
+inGarden(1,Aster) + inGarden(2,Aster) + inGarden(3,Aster) + inGarden(4,Aster) + inGarden(5,Aster) = 1.
+-validGarden(x) | -vegetable(y) | inGarden(x,y) != 1 | inGarden(x,Aster) = 0.
+-validGarden(x) | inGarden(x,Rose) != 1 | inGarden(x,Parsley) = 0.
+inGarden(1,Nut) + inGarden(2,Nut) + inGarden(3,Nut) + inGarden(4,Nut) + inGarden(5,Nut) = 1.
+-validGarden(x) | inGarden(x,Nut) != 1 | inGarden(x,Gourd) = 1.
+-validGarden(x) | inGarden(x,Nut) != 1 | inGarden(x,Parsley) = 1.
+inGarden(1,Apple) = 1.
+inGarden(1,Cherry) = 1.
+inGarden(1,Cherry) + inGarden(2,Cherry) + inGarden(3,Cherry) + inGarden(4,Cherry) + inGarden(5,Cherry) = 2.
+inGarden(Sam,Cherry) = 1.
+inGarden(Sam,Onion) = 1.
+inGarden(Luke,0) + inGarden(Luke,1) + inGarden(Luke,2) + inGarden(Luke,3) = 2.
+inGarden(1,Tulip) + inGarden(2,Tulip) + inGarden(3,Tulip) + inGarden(4,Tulip) + inGarden(5,Tulip) = 2.
+inGarden(1,Apple) + inGarden(2,Apple) + inGarden(3,Apple) + inGarden(4,Apple) + inGarden(5,Apple) = 1.
+inGarden(1,Parsley) + inGarden(2,Parsley) + inGarden(3,Parsley) + inGarden(4,Parsley) + inGarden(5,Parsley) = 1.
+inGarden(Zick,Parsley) = 0.
+Zick != 1 | inGarden(2,Parsley) = 1.
+2 != Zick | inGarden(1,Parsley) = 1 | inGarden(3,Parsley) = 1.
+4 != Zick | inGarden(3,Parsley) = 1 | inGarden(5,Parsley) = 1.
+5 != Zick | inGarden(4,Parsley) = 1.
+Sam != 1.
+5 != Sam.
+-vegetable(x) | inGarden(Hank,x) = 0.
+inGarden(Hank,Aster) = 0.
+c6 < c7.
+c7 < c8.
+c9 != c6.
+c9 != c7.
+c9 != c8.
+vegetable(c6).
+vegetable(c7).
+vegetable(c8).
+-vegetable(c9).
+inGarden(Paul,c6) = 1.
+inGarden(Paul,c7) = 1.
+inGarden(Paul,c8) = 1.
+inGarden(Paul,c9) = 1.
+Paul != Hank.
+Paul != Luke.
+Paul != Sam.
+Paul != Zick.
+Hank != Luke.
+Hank != Sam.
+Hank != Zick.
+Luke != Sam.
+Luke != Zick.
+Sam != Zick.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 11.
+
+============================== DOMAIN SIZE 12 ========================
+
+============================== MODEL =================================
+
+interpretation( 12, [number=1, seconds=27], [
+
+        function(Apple, [ 0 ]),
+
+        function(Aster, [ 8 ]),
+
+        function(Carrot, [ 4 ]),
+
+        function(Cherry, [ 3 ]),
+
+        function(Gourd, [ 6 ]),
+
+        function(Hank, [ 1 ]),
+
+        function(Lily, [11 ]),
+
+        function(Luke, [ 5 ]),
+
+        function(Nut, [ 2 ]),
+
+        function(Onion, [ 7 ]),
+
+        function(Parsley, [ 5 ]),
+
+        function(Paul, [ 3 ]),
+
+        function(Pear, [ 1 ]),
+
+        function(Rose, [ 9 ]),
+
+        function(Sam, [ 2 ]),
+
+        function(Tulip, [10 ]),
+
+        function(Zick, [ 4 ]),
+
+        function(c1, [ 9 ]),
+
+        function(c2, [ 3 ]),
+
+        function(c3, [ 7 ]),
+
+        function(c4, [ 9 ]),
+
+        function(c5, [10 ]),
+
+        function(c6, [ 4 ]),
+
+        function(c7, [ 6 ]),
+
+        function(c8, [ 7 ]),
+
+        function(c9, [ 9 ]),
+
+        function(inGarden(_,_), [
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0,
+			   0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0,
+			   0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
+			   0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(flower(_), [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 ]),
+
+        relation(fruit(_), [ 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(validGarden(_), [ 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(vegetable(_), [ 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 12.
+
+Current CPU time: 0.00 seconds (total CPU time: 27.77 seconds).
+Ground clauses: seen=2835, kept=620.
+Selections=1568993, assignments=18827490, propagations=141166, current_models=1.
+Rewrite_terms=517196292, rewrite_bools=25876091, indexes=70156.
+Rules_from_neg_clauses=2, cross_offs=601414.
+
+============================== end of statistics =====================
+
+User_CPU=27.77, System_CPU=0.29, Wall_clock=28.
+
+Exiting with 1 model.
+
+Process 235 exit (max_models) Wed Dec 20 20:48:40 2023
+The process finished Wed Dec 20 20:48:40 2023

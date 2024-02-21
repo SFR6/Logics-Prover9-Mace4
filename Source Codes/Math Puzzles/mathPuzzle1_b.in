@@ -1,0 +1,42 @@
+set(arithmetic).
+assign(domain_size, 76).
+assign(max_models, -1).
+
+list(distinct).
+	[0,B1,B2,B3,B4,B5,B6,B7,B8,B9,B10].
+end_of_list.
+
+formulas(assumptions).
+	
+	B1<=10 & B2<=10 & B3<=10 & B4<=10 & B5<=10 & B6<=10 & B7<=10 & B8<=10 & B9<=10 & B10<=10.
+	
+	B1 < B2.
+	B3 < B4 & B4 < B5 & B5 < B6.
+	B7 < B8 & B8 < B9 & B9 < B10.
+	
+	B1 < B3 & B3 < B7. % avoid isomorphisms
+	B10 != 8. %avoid isomorphisms
+	
+	b(1)=15.
+	b(2)=13.
+	b(3)=11.
+	b(4)=10.
+	b(5)=9.
+	b(6)=8.
+	b(7)=4.
+	b(8)=2.
+	b(9)=2.
+	b(10)=1.
+	(x>=11 | x=0) -> b(x)=0.
+	
+	c1=25.
+	c2=25.
+	c3=25.
+	
+	c1=b(B1)+b(B2).
+	c2=b(B3)+b(B4)+b(B5)+b(B6).
+	c3=b(B7)+b(B8)+b(B9)+b(B10).
+	
+	c1+c2+c3=75.
+
+end_of_list.

@@ -1,0 +1,264 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 164 was started by tudorcristea on DESKTOP-C94JCEA,
+Thu Nov 30 18:35:47 2023
+The command was "./mace4 -c -f Puzzles/cypherPuzzle3.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/cypherPuzzle3.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,30).
+    % assign(domain_size, 30) -> assign(start_size, 30).
+    % assign(domain_size, 30) -> assign(end_size, 30).
+assign(max_models,-1).
+
+list(distinct).
+[A,B,C,D,E,F,G,H,I,J].
+end_of_list.
+
+formulas(assumptions).
+square(x) <-> x = 0 | x = 1 | x = 4 | x = 9.
+triangle(x) <-> x = 1 | x = 3 | x = 6.
+even(x) <-> x = 0 | x = 2 | x = 4 | x = 6 | x = 8.
+odd(x) <-> x = 1 | x = 3 | x = 5 | x = 7 | x = 9.
+cube(x) <-> x = 0 | x = 1 | x = 8.
+prime(x) <-> x = 2 | x = 3 | x = 5 | x = 7.
+A <= 9 & B <= 9 & C <= 9 & D <= 9 & E <= 9 & F <= 9 & G <= 9 & H <= 9 & I <= 9 & J <= 9.
+A > 0.
+square(A) | triangle(A).
+-(square(A) & triangle(A)).
+even(B) | cube(B).
+-(even(B) & cube(B)).
+cube(C) | triangle(C).
+-(cube(C) & triangle(C)).
+odd(D) | square(D).
+-(odd(D) & square(D)).
+odd(E) | cube(E).
+-(odd(E) & cube(E)).
+odd(F) | triangle(F).
+-(odd(F) & triangle(F)).
+odd(G) | prime(G).
+-(odd(G) & prime(G)).
+even(H) | square(H).
+-(even(H) & square(H)).
+square(I) | cube(I).
+-(square(I) & cube(I)).
+prime(J) | triangle(J).
+-(prime(J) & triangle(J)).
+A < B & C < D & E < F & G < H & I < J.
+A + B + C + D + E < F + G + H + I + J.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 square(x) <-> x = 0 | x = 1 | x = 4 | x = 9 # label(non_clause).  [assumption].
+2 triangle(x) <-> x = 1 | x = 3 | x = 6 # label(non_clause).  [assumption].
+3 even(x) <-> x = 0 | x = 2 | x = 4 | x = 6 | x = 8 # label(non_clause).  [assumption].
+4 odd(x) <-> x = 1 | x = 3 | x = 5 | x = 7 | x = 9 # label(non_clause).  [assumption].
+5 cube(x) <-> x = 0 | x = 1 | x = 8 # label(non_clause).  [assumption].
+6 prime(x) <-> x = 2 | x = 3 | x = 5 | x = 7 # label(non_clause).  [assumption].
+7 A <= 9 & B <= 9 & C <= 9 & D <= 9 & E <= 9 & F <= 9 & G <= 9 & H <= 9 & I <= 9 & J <= 9 # label(non_clause).  [assumption].
+8 -(square(A) & triangle(A)) # label(non_clause).  [assumption].
+9 -(even(B) & cube(B)) # label(non_clause).  [assumption].
+10 -(cube(C) & triangle(C)) # label(non_clause).  [assumption].
+11 -(odd(D) & square(D)) # label(non_clause).  [assumption].
+12 -(odd(E) & cube(E)) # label(non_clause).  [assumption].
+13 -(odd(F) & triangle(F)) # label(non_clause).  [assumption].
+14 -(odd(G) & prime(G)) # label(non_clause).  [assumption].
+15 -(even(H) & square(H)) # label(non_clause).  [assumption].
+16 -(square(I) & cube(I)) # label(non_clause).  [assumption].
+17 -(prime(J) & triangle(J)) # label(non_clause).  [assumption].
+18 A < B & C < D & E < F & G < H & I < J # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+-square(x) | 0 = x | x = 1 | 4 = x | 9 = x.
+square(x) | 0 != x.
+square(x) | x != 1.
+square(x) | 4 != x.
+square(x) | 9 != x.
+-triangle(x) | x = 1 | 3 = x | 6 = x.
+triangle(x) | x != 1.
+triangle(x) | 3 != x.
+triangle(x) | 6 != x.
+-even(x) | 0 = x | 2 = x | 4 = x | 6 = x | 8 = x.
+even(x) | 0 != x.
+even(x) | 2 != x.
+even(x) | 4 != x.
+even(x) | 6 != x.
+even(x) | 8 != x.
+-odd(x) | x = 1 | 3 = x | 5 = x | 7 = x | 9 = x.
+odd(x) | x != 1.
+odd(x) | 3 != x.
+odd(x) | 5 != x.
+odd(x) | 7 != x.
+odd(x) | 9 != x.
+-cube(x) | 0 = x | x = 1 | 8 = x.
+cube(x) | 0 != x.
+cube(x) | x != 1.
+cube(x) | 8 != x.
+-prime(x) | 2 = x | 3 = x | 5 = x | 7 = x.
+prime(x) | 2 != x.
+prime(x) | 3 != x.
+prime(x) | 5 != x.
+prime(x) | 7 != x.
+A <= 9.
+B <= 9.
+C <= 9.
+D <= 9.
+E <= 9.
+F <= 9.
+G <= 9.
+H <= 9.
+I <= 9.
+J <= 9.
+A > 0.
+square(A) | triangle(A).
+-square(A) | -triangle(A).
+even(B) | cube(B).
+-even(B) | -cube(B).
+cube(C) | triangle(C).
+-cube(C) | -triangle(C).
+odd(D) | square(D).
+-odd(D) | -square(D).
+odd(E) | cube(E).
+-odd(E) | -cube(E).
+odd(F) | triangle(F).
+-odd(F) | -triangle(F).
+odd(G) | prime(G).
+-odd(G) | -prime(G).
+even(H) | square(H).
+-even(H) | -square(H).
+square(I) | cube(I).
+-square(I) | -cube(I).
+prime(J) | triangle(J).
+-prime(J) | -triangle(J).
+A < B.
+C < D.
+E < F.
+G < H.
+I < J.
+A + B + C + D + E < F + G + H + I + J.
+A != B.
+A != C.
+A != D.
+A != E.
+A != F.
+A != G.
+A != H.
+A != I.
+A != J.
+B != C.
+B != D.
+B != E.
+B != F.
+B != G.
+B != H.
+B != I.
+B != J.
+C != D.
+C != E.
+C != F.
+C != G.
+C != H.
+C != I.
+C != J.
+D != E.
+D != F.
+D != G.
+D != H.
+D != I.
+D != J.
+E != F.
+E != G.
+E != H.
+E != I.
+E != J.
+F != G.
+F != H.
+F != I.
+F != J.
+G != H.
+G != I.
+G != J.
+H != I.
+H != J.
+I != J.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 9.
+
+============================== DOMAIN SIZE 30 ========================
+
+============================== MODEL =================================
+
+interpretation( 30, [number=1, seconds=0], [
+
+        function(A, [ 3 ]),
+
+        function(B, [ 6 ]),
+
+        function(C, [ 0 ]),
+
+        function(D, [ 5 ]),
+
+        function(E, [ 8 ]),
+
+        function(F, [ 9 ]),
+
+        function(G, [ 1 ]),
+
+        function(H, [ 2 ]),
+
+        function(I, [ 4 ]),
+
+        function(J, [ 7 ]),
+
+        relation(cube(_), [ 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(even(_), [ 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(odd(_), [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(prime(_), [ 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(square(_), [ 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(triangle(_), [ 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 30.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=982, kept=262.
+Selections=377, assignments=11310, propagations=180, current_models=1.
+Rewrite_terms=143670, rewrite_bools=103506, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=17434.
+
+============================== end of statistics =====================
+
+User_CPU=0.01, System_CPU=0.00, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 164 exit (all_models) Thu Nov 30 18:35:47 2023
+The process finished Thu Nov 30 18:35:47 2023

@@ -1,0 +1,76 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 226 was started by tudorcristea on DESKTOP-C94JCEA,
+Thu Nov 30 18:44:46 2023
+The command was "./mace4 -c -f Puzzles/samLoydPuzzle2.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/samLoydPuzzle2.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,30).
+    % assign(domain_size, 30) -> assign(start_size, 30).
+    % assign(domain_size, 30) -> assign(end_size, 30).
+assign(max_models,1).
+
+formulas(assumptions).
+childrenWithoutSammy / 3 + (3 * childrenWithoutSammy) / 4 = childrenWithoutSammy + 1.
+childrenWithSammy = childrenWithoutSammy + 1.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+childrenWithoutSammy / 3 + (3 * childrenWithoutSammy) / 4 = childrenWithoutSammy + 1.
+childrenWithSammy = childrenWithoutSammy + 1.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 4.
+
+============================== DOMAIN SIZE 30 ========================
+
+============================== MODEL =================================
+
+interpretation( 30, [number=1, seconds=0], [
+
+        function(childrenWithSammy, [13 ]),
+
+        function(childrenWithoutSammy, [12 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 30.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.00 seconds).
+Ground clauses: seen=2, kept=2.
+Selections=15, assignments=417, propagations=0, current_models=1.
+Rewrite_terms=456, rewrite_bools=416, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=0.
+
+============================== end of statistics =====================
+
+User_CPU=0.00, System_CPU=0.00, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 226 exit (max_models) Thu Nov 30 18:44:46 2023
+The process finished Thu Nov 30 18:44:46 2023

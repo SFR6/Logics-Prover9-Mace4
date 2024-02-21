@@ -1,0 +1,15 @@
+set(arithmetic).
+assign(domain_size, 73).
+assign(max_models, 1).
+
+formulas(assumptions).
+	
+	herd = 17 | herd = 35 | herd = 53 | herd = 71.
+	
+	(herd+1)/2 + (herd+1)/3 + (herd+1)/9 = herd.
+	
+	son1 * 2 = herd.
+	son2 * 3 = herd.
+	son3 * 9 = herd.
+
+end_of_list.

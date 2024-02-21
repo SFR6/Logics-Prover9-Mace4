@@ -1,0 +1,126 @@
+set(arithmetic).
+assign(domain_size, 12).
+assign(max_models, 1).
+
+list(distinct).
+	[Paul, Hank, Luke, Sam, Zick].
+end_of_list.
+
+formulas(assumptions).
+
+	%Clue 1:
+	Apple = 0.
+	Pear = 1.
+	Nut = 2.
+	Cherry = 3.
+	Carrot = 4.
+	Parsley = 5.
+	Gourd = 6.
+	Onion = 7.
+	Aster = 8.
+	Rose = 9.
+	Tulip = 10.
+	Lily = 11.
+	
+	inGarden(y,x) < 2.
+	
+	(y=0 | y>5) -> inGarden(y,x)=0.
+	
+	y>=1 & y<=5 -> inGarden(y,0) + inGarden(y,1) + inGarden(y,2) + inGarden(y,3) + inGarden(y,4) + inGarden(y,5) + inGarden(y,6) + inGarden(y,7) + inGarden(y,8) + inGarden(y,9) + inGarden(y,10) + inGarden(y,11) = 4.
+	
+	fruit(x) <-> (x=Apple | x=Pear | x=Nut | x=Cherry).
+	vegetable(x) <-> (x=Carrot | x=Parsley | x=Gourd | x=Onion).
+	flower(x) <-> (x=Aster | x=Rose | x=Tulip | x=Lily).
+	
+	validGarden(y) <-> (y>=1 & y<=5).
+	
+	validGarden(Paul) & validGarden(Hank) & validGarden(Luke) & validGarden(Sam) & validGarden(Zick).
+	
+	%Clue 2:
+	validGarden(y) -> inGarden(y,0) + inGarden(y,1) + inGarden(y,2) + inGarden(y,3) + inGarden(y,4) + inGarden(y,5) + inGarden(y,6) + inGarden(y,7) + inGarden(y,8) + inGarden(y,9) + inGarden(y,10) + inGarden(y,11) = 4.
+	
+	%Clue 3:
+	inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) >= 1.
+	inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) < 5.
+	
+	%Clue 4:
+	exists x (inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) = 4).
+	inGarden(1,x) + inGarden(2,x) + inGarden(3,x) + inGarden(4,x) + inGarden(5,x) = 4 & inGarden(1,y) + inGarden(2,y) + inGarden(3,y) + inGarden(4,y) + inGarden(5,y) = 4 -> y=x.
+	
+	%Clue 5:
+	%exists x exists y exists z (fruit(x) & vegetable(y) & flower(z) & ((inGarden(1,x) + inGarden(1,y) + inGarden(1,z) = 3) |
+	%																   (inGarden(2,x) + inGarden(2,y) + inGarden(2,z) = 3) |
+	%																   (inGarden(3,x) + inGarden(3,y) + inGarden(3,z) = 3) |
+	%																   (inGarden(4,x) + inGarden(4,y) + inGarden(4,z) = 3) |
+	%																   (inGarden(5,x) + inGarden(5,y) + inGarden(5,z) = 3))).
+	
+	exists x (fruit(x) & inGarden(Sam,x)=1).
+	exists y (vegetable(y) & inGarden(Sam,y)=1).
+	exists z1 exists z2 (z1<z2 & flower(z1) & flower(z2) & inGarden(Sam,z1)+inGarden(Sam,z2)=2).
+	
+	%Clue 6:
+	((fruit(x) -> inGarden(1,x)=1) | (vegetable(y) -> inGarden(1,y)=1) | (flower(z) -> inGarden(1,z)=1)) |
+	((fruit(x) -> inGarden(2,x)=1) | (vegetable(y) -> inGarden(2,y)=1) | (flower(z) -> inGarden(2,z)=1)) |
+	((fruit(x) -> inGarden(3,x)=1) | (vegetable(y) -> inGarden(3,y)=1) | (flower(z) -> inGarden(3,z)=1)) |
+	((fruit(x) -> inGarden(4,x)=1) | (vegetable(y) -> inGarden(4,y)=1) | (flower(z) -> inGarden(4,z)=1)) |
+	((fruit(x) -> inGarden(5,x)=1) | (vegetable(y) -> inGarden(5,y)=1) | (flower(z) -> inGarden(5,z)=1)).
+	
+	%Clue 7:
+	inGarden(1,Pear)=1.
+	inGarden(2,Pear)=0.
+	inGarden(3,Pear)=0.
+	inGarden(4,Pear)=0.
+	inGarden(5,Pear)=1.
+	
+	%Clue 8:
+	Paul=3.
+	inGarden(3,Lily)=0.
+	
+	%Clue 9:
+	inGarden(1,Aster) + inGarden(2,Aster) + inGarden(3,Aster) + inGarden(4,Aster) + inGarden(5,Aster) = 1.
+	(validGarden(y) & vegetable(x) & inGarden(y,x)=1) -> inGarden(y,Aster)=0.
+	
+	%Clue 10:
+	(validGarden(y) & inGarden(y,Rose)=1) -> inGarden(y,Parsley)=0.
+	
+	%Clue 11:
+	inGarden(1,Nut) + inGarden(2,Nut) + inGarden(3,Nut) + inGarden(4,Nut) + inGarden(5,Nut) = 1.
+	(validGarden(y) & inGarden(y,Nut)=1) -> (inGarden(y,Gourd)=1 & inGarden(y,Parsley)=1).
+	
+	%Clue 12:
+	inGarden(1,Apple)=1 & inGarden(1,Cherry)=1.
+	
+	%Clue 13:
+	inGarden(1,Cherry) + inGarden(2,Cherry) + inGarden(3,Cherry) + inGarden(4,Cherry) + inGarden(5,Cherry) = 2.
+	
+	%Clue 14:
+	inGarden(Sam,Cherry)=1 & inGarden(Sam,Onion)=1.
+	
+	%Clue 15:
+	inGarden(Luke,0) + inGarden(Luke,1) + inGarden(Luke,2) + inGarden(Luke,3) = 2.
+	
+	%Clue 16:
+	inGarden(1,Tulip) + inGarden(2,Tulip) + inGarden(3,Tulip) + inGarden(4,Tulip) + inGarden(5,Tulip) = 2.
+	
+	%Clue 17:
+	inGarden(1,Apple) + inGarden(2,Apple) + inGarden(3,Apple) + inGarden(4,Apple) + inGarden(5,Apple) = 1.
+	
+	%Clue 18:
+	inGarden(1,Parsley) + inGarden(2,Parsley) + inGarden(3,Parsley) + inGarden(4,Parsley) + inGarden(5,Parsley) = 1.
+	inGarden(Zick,Parsley)=0.
+	Zick=1 -> inGarden(2,Parsley)=1.
+	Zick=2 -> (inGarden(1,Parsley)=1 | inGarden(3,Parsley)=1).
+	Zick=4 -> (inGarden(3,Parsley)=1 | inGarden(5,Parsley)=1).
+	Zick=5 -> inGarden(4,Parsley)=1.
+	
+	%Clue 19:
+	Sam!=1 & Sam!=5.
+	
+	%Clue 20:
+	vegetable(x) -> inGarden(Hank,x)=0.
+	inGarden(Hank,Aster)=0.
+	
+	%Clue 21:
+	exists x1 exists x2 exists x3 exists x4 (x1<x2 & x2<x3 & x4!=x1 & x4!=x2 & x4!=x3 & vegetable(x1) & vegetable(x2) & vegetable(x3) & -vegetable(x4) & inGarden(Paul,x1)=1 & inGarden(Paul,x2)=1 & inGarden(Paul,x3)=1 & inGarden(Paul,x4)=1).
+
+end_of_list.

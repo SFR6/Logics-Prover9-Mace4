@@ -1,0 +1,10 @@
+set(arithmetic).
+assign(domain_size, 30).
+assign(max_models, 1).
+
+formulas(assumptions).
+	
+	childrenWithoutSammy/3 + (3*childrenWithoutSammy)/4 = childrenWithoutSammy+1.
+	childrenWithSammy = childrenWithoutSammy + 1.
+
+end_of_list.

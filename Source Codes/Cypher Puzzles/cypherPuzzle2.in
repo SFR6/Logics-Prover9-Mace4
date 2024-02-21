@@ -1,0 +1,28 @@
+set(arithmetic).
+assign(domain_size, 1400).
+assign(max_models, -1).
+
+list(distinct).
+	[D,E].
+	[0,D].
+end_of_list.
+
+formulas(assumptions).
+	
+	D<=9 & E<=9.
+	
+	n1 = D*10 + D.
+	n2 = D*1000 + E*100 + E*10 + D.
+	
+	E=0 -> 1=n2.
+	E=1 -> n1=n2.
+	E=2 -> n1*n1=n2.
+	E=3 -> n1*n1*n1=n2.
+	E=4 -> n1*n1*n1*n1=n2.
+	E=5 -> n1*n1*n1*n1*n1=n2.
+	E=6 -> n1*n1*n1*n1*n1*n1=n2.
+	E=7 -> n1*n1*n1*n1*n1*n1*n1=n2.
+	E=8 -> n1*n1*n1*n1*n1*n1*n1*n1=n2.
+	E=9 -> n1*n1*n1*n1*n1*n1*n1*n1*n1=n2.
+
+end_of_list.

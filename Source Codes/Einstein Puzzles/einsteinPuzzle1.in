@@ -1,0 +1,102 @@
+set(arithmetic).
+assign(domain_size, 8).
+assign(max_models, 1).
+
+list(distinct).
+	[Daniella, Victoria, Hannah, Jenny, Monica, Irene, Pamela, Veronica].
+	[Matthew, Owen, Stan, Robert, Alexander, Oto, Paul, Rick].
+	[ShopAssistant, Doctor, Agriculturist, WarehouseManager, TicketCollector, Accountant, Shopper, Teacher].
+	[Trabant, Skoda, Moskvic, Wartburg, Dacia, Fiat, Renault, Ziguli].
+	[Pink, Brown, White, Yellow, Violet, Red, Green, Blue].
+	[MulatkaGabriela, TheModernComedy, DameCommissar, WeWereFive, ShedStoat, TheSeadog, GrandfatherJoseph, SlovackoJudge].
+end_of_list.
+
+formulas(assumptions).
+
+	Black=0.
+	Horricks=1.
+	Smith=2.
+	Kuril=3.
+	Cermak=4.
+	Zajac=5.
+	Swain=6.
+	Dvorak=7.
+
+	brought(x,y) & brought(z,y) -> x=z.
+	brought(x,y) & brought(x,z) -> y=z.
+	brought(x,y) -> -borrowed(x,y).
+	
+	borrowed(x,y) & borrowed(z,y) -> x=z.
+	borrowed(x,y) & borrowed(x,z) -> y=z.
+	borrowed(x,y) -> -brought(x,y).
+
+	%Clue 1:
+	Daniella = Black & Daniella = ShopAssistant.
+	
+	%Clue 2:
+	exists x (brought(x,TheSeadog) & x = Fiat & x = Red).
+	
+	%Clue 3:
+	Owen = Victoria & Owen = Brown.
+	
+	%Clue 4:
+	Stan = Horricks & Stan = Hannah & Stan = White.
+	
+	%Clue 5:
+	Jenny = Smith & Jenny = WarehouseManager & Jenny = Wartburg.
+	
+	%Clue 6:
+	Monica = Alexander & borrowed(Monica,GrandfatherJoseph).
+	
+	%Clue 7:
+	Matthew = Pink & brought(Matthew,MulatkaGabriela).
+	
+	%Clue 8:
+	Irene = Oto & Irene = Accountant.
+	
+	%Clue 9:
+	exists x (borrowed(x,WeWereFive) & x=Trabant) & brought(Smith,WeWereFive).
+	
+	%Clue 10:
+	Cermak = TicketCollector & brought(Cermak,ShedStoat) & borrowed(Zajac,ShedStoat).
+	
+	%Clue 11:
+	Kuril = Doctor & borrowed(Kuril,SlovackoJudge).
+	
+	%Clue 12:
+	Paul = Green.
+	
+	%Clue 13:
+	Veronica = Dvorak & Veronica = Blue.
+	
+	%Clue 14:
+	brought(Rick,SlovackoJudge) & Rick = Ziguli.
+	
+	%Clue 15:
+	exists x (brought(x,DameCommissar) & borrowed(x,MulatkaGabriela)).
+	
+	%Clue 16:
+	Dacia = Violet.
+	
+	%Clue 17:
+	exists x (x=Teacher & borrowed(x,DameCommissar)).
+	
+	%Clue 18:
+	Agriculturist = Moskvic.
+	
+	%Clue 19:
+	Pamela = Renault & brought(Pamela,GrandfatherJoseph).
+	
+	%Clue 20:
+	exists y (brought(Zajac,y) & borrowed(Pamela,y)).
+	
+	%Clue 21:
+	Robert = Yellow & borrowed(Robert,TheModernComedy).
+	
+	%Clue 22:
+	Swain = Shopper.
+	
+	%Clue 23:
+	exists x (brought(x,TheModernComedy) & x=Skoda).
+	
+end_of_list.

@@ -1,0 +1,20 @@
+set(arithmetic).
+assign(domain_size, 56).
+assign(max_models, -1).
+
+list(distinct).
+	[Alex,Brook,Cody,Dusty,Erin].
+end_of_list.
+
+formulas(assumptions).
+	
+	Dusty<Brook <-> Dusty=Erin+9.
+	Erin<Brook <-> Erin=Alex+7.
+	Alex<Brook <-> Alex*17=Brook*10.
+	Brook<Cody <-> Erin<Cody.
+	Brook<Cody <-> abs(Cody + -Dusty) = abs(Dusty + -Erin).
+	Cody<Dusty <-> Cody=Dusty+6 | Dusty=Cody+6.
+	Cody<Alex <-> Cody=Alex+10.
+	Cody<Alex <-> Brook<Dusty.
+
+end_of_list.

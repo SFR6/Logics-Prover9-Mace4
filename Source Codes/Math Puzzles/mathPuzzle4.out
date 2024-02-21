@@ -1,0 +1,153 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 679 was started by tudorcristea on DESKTOP-C94JCEA,
+Fri Dec  8 20:32:54 2023
+The command was "./mace4 -c -f Puzzles/mathPuzzle2.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/mathPuzzle2.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,51).
+    % assign(domain_size, 51) -> assign(start_size, 51).
+    % assign(domain_size, 51) -> assign(end_size, 51).
+assign(max_models,-1).
+
+list(distinct).
+[0,Tammy,Tracey,Tommy,Timmy,Tony,Mother].
+end_of_list.
+
+formulas(assumptions).
+Tony < Tammy & Tony < Tracey & Tony < Tommy & Tony < Timmy & Tony < Mother.
+Mother > Tammy & Mother > Tracey & Mother > Tommy & Mother > Timmy.
+Tommy > Tammy & Tommy > Tracey & Tommy > Timmy.
+Tammy = 3 * (Timmy + -Tony).
+Mother + -Tony = 30.
+Tammy + -Tony = 2 | Tammy + -Tony = 3 | Tammy + -Tony = 5 | Tammy + -Tony = 6 | Tammy + -Tony = 10 | Tammy + -Tony = 15.
+Tracey + -Tony = 2 | Tracey + -Tony = 3 | Tracey + -Tony = 5 | Tracey + -Tony = 6 | Tracey + -Tony = 10 | Tracey + -Tony = 15.
+Tommy + -Tony = 2 | Tommy + -Tony = 3 | Tommy + -Tony = 5 | Tommy + -Tony = 6 | Tommy + -Tony = 10 | Tommy + -Tony = 15.
+Timmy + -Tony = 2 | Timmy + -Tony = 3 | Timmy + -Tony = 5 | Timmy + -Tony = 6 | Timmy + -Tony = 10 | Timmy + -Tony = 15.
+2 * n1 = 2 * Tracey + -Tammy.
+Tracey + -n1 = 2 | Tracey + -n1 = 3 | Tracey + -n1 = 4 | Tracey + -n1 = 6 | Tracey + -n1 = 9 | Tracey + -n1 = 12 | Tracey + -n1 = 18.
+Timmy + -n1 = 2 | Timmy + -n1 = 3 | Timmy + -n1 = 4 | Timmy + -n1 = 6 | Timmy + -n1 = 9 | Timmy + -n1 = 12 | Timmy + -n1 = 18.
+Tony + -n1 = 2 | Tony + -n1 = 3 | Tony + -n1 = 4 | Tony + -n1 = 6 | Tony + -n1 = 9 | Tony + -n1 = 12 | Tony + -n1 = 18.
+n2 = 50 + -Mother.
+Tony + n2 = Mother + -Tommy.
+n1 = n2.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Tony < Tammy & Tony < Tracey & Tony < Tommy & Tony < Timmy & Tony < Mother # label(non_clause).  [assumption].
+2 Mother > Tammy & Mother > Tracey & Mother > Tommy & Mother > Timmy # label(non_clause).  [assumption].
+3 Tommy > Tammy & Tommy > Tracey & Tommy > Timmy # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+Tony < Tammy.
+Tony < Tracey.
+Tony < Tommy.
+Tony < Timmy.
+Tony < Mother.
+Mother > Tammy.
+Mother > Tracey.
+Mother > Tommy.
+Mother > Timmy.
+Tommy > Tammy.
+Tommy > Tracey.
+Tommy > Timmy.
+Tammy = 3 * (Timmy + -Tony).
+Mother + -Tony = 30.
+Tammy + -Tony = 2 | Tammy + -Tony = 3 | Tammy + -Tony = 5 | Tammy + -Tony = 6 | Tammy + -Tony = 10 | Tammy + -Tony = 15.
+Tracey + -Tony = 2 | Tracey + -Tony = 3 | Tracey + -Tony = 5 | Tracey + -Tony = 6 | Tracey + -Tony = 10 | Tracey + -Tony = 15.
+Tommy + -Tony = 2 | Tommy + -Tony = 3 | Tommy + -Tony = 5 | Tommy + -Tony = 6 | Tommy + -Tony = 10 | Tommy + -Tony = 15.
+Timmy + -Tony = 2 | Timmy + -Tony = 3 | Timmy + -Tony = 5 | Timmy + -Tony = 6 | Timmy + -Tony = 10 | Timmy + -Tony = 15.
+2 * n1 = 2 * Tracey + -Tammy.
+Tracey + -n1 = 2 | Tracey + -n1 = 3 | Tracey + -n1 = 4 | Tracey + -n1 = 6 | Tracey + -n1 = 9 | Tracey + -n1 = 12 | Tracey + -n1 = 18.
+Timmy + -n1 = 2 | Timmy + -n1 = 3 | Timmy + -n1 = 4 | Timmy + -n1 = 6 | Timmy + -n1 = 9 | Timmy + -n1 = 12 | Timmy + -n1 = 18.
+Tony + -n1 = 2 | Tony + -n1 = 3 | Tony + -n1 = 4 | Tony + -n1 = 6 | Tony + -n1 = 9 | Tony + -n1 = 12 | Tony + -n1 = 18.
+n2 = 50 + -Mother.
+Tony + n2 = Mother + -Tommy.
+n1 = n2.
+0 != Tammy.
+0 != Tracey.
+0 != Tommy.
+0 != Timmy.
+0 != Tony.
+0 != Mother.
+Tammy != Tracey.
+Tammy != Tommy.
+Tammy != Timmy.
+Tammy != Tony.
+Tammy != Mother.
+Tracey != Tommy.
+Tracey != Timmy.
+Tracey != Tony.
+Tracey != Mother.
+Tommy != Timmy.
+Tommy != Tony.
+Tommy != Mother.
+Timmy != Tony.
+Timmy != Mother.
+Tony != Mother.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 50.
+
+============================== DOMAIN SIZE 51 ========================
+
+============================== MODEL =================================
+
+interpretation( 51, [number=1, seconds=13], [
+
+        function(Mother, [43 ]),
+
+        function(Tammy, [18 ]),
+
+        function(Timmy, [19 ]),
+
+        function(Tommy, [23 ]),
+
+        function(Tony, [13 ]),
+
+        function(Tracey, [16 ]),
+
+        function(n1, [ 7 ]),
+
+        function(n2, [ 7 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 51.
+
+Current CPU time: 0.00 seconds (total CPU time: 26.72 seconds).
+Ground clauses: seen=46, kept=46.
+Selections=501175, assignments=25559925, propagations=3417, current_models=1.
+Rewrite_terms=477726921, rewrite_bools=260061996, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=25058856.
+
+============================== end of statistics =====================
+
+User_CPU=26.72, System_CPU=0.07, Wall_clock=27.
+
+Exiting with 1 model.
+
+Process 679 exit (all_models) Fri Dec  8 20:33:21 2023
+The process finished Fri Dec  8 20:33:21 2023

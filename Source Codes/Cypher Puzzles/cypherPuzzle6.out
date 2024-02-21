@@ -1,0 +1,152 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 47 was started by tudorcristea on DESKTOP-C94JCEA,
+Sat Dec  9 11:09:29 2023
+The command was "./mace4 -c -f Puzzles/cypherPuzzle2.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/cypherPuzzle2.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,10).
+    % assign(domain_size, 10) -> assign(start_size, 10).
+    % assign(domain_size, 10) -> assign(end_size, 10).
+assign(max_models,-1).
+
+formulas(assumptions).
+less(x,y) < 2 & greater(x,y) < 2 & equal(x,y) < 2.
+less(x,y) = 1 -> x <= y.
+less(x,y) = 0 -> x > y.
+greater(x,y) = 1 -> x >= y.
+greater(x,y) = 0 -> x < y.
+equal(x,y) = 1 -> x = 1 & y = 1.
+equal(x,y) = 0 -> x != 1 | y != 1.
+f(x,y) = equal(less(c(x),y),greater(c(x),y)).
+h(x) = f(0,x) + f(1,x) + f(2,x) + f(3,x) + f(4,x) + f(5,x) + f(6,x) + f(7,x) + f(8,x) + f(9,x).
+c(0) > 0.
+c(x) = h(x).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 less(x,y) < 2 & greater(x,y) < 2 & equal(x,y) < 2 # label(non_clause).  [assumption].
+2 less(x,y) = 1 -> x <= y # label(non_clause).  [assumption].
+3 less(x,y) = 0 -> x > y # label(non_clause).  [assumption].
+4 greater(x,y) = 1 -> x >= y # label(non_clause).  [assumption].
+5 greater(x,y) = 0 -> x < y # label(non_clause).  [assumption].
+6 equal(x,y) = 1 -> x = 1 & y = 1 # label(non_clause).  [assumption].
+7 equal(x,y) = 0 -> x != 1 | y != 1 # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+less(x,y) < 2.
+greater(x,y) < 2.
+equal(x,y) < 2.
+less(x,y) != 1 | x <= y.
+less(x,y) != 0 | x > y.
+greater(x,y) != 1 | x >= y.
+greater(x,y) != 0 | x < y.
+equal(x,y) != 1 | x = 1.
+equal(x,y) != 1 | y = 1.
+equal(x,y) != 0 | x != 1 | y != 1.
+f(x,y) = equal(less(c(x),y),greater(c(x),y)).
+h(x) = f(0,x) + f(1,x) + f(2,x) + f(3,x) + f(4,x) + f(5,x) + f(6,x) + f(7,x) + f(8,x) + f(9,x).
+c(0) > 0.
+c(x) = h(x).
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 9.
+
+============================== DOMAIN SIZE 10 ========================
+
+============================== MODEL =================================
+
+interpretation( 10, [number=1, seconds=10451], [
+
+        function(c(_), [ 6, 2, 1, 0, 0, 0, 1, 0, 0, 0 ]),
+
+        function(h(_), [ 6, 2, 1, 0, 0, 0, 1, 0, 0, 0 ]),
+
+        function(equal(_,_), [
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        function(f(_,_), [
+			   0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        function(greater(_,_), [
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+			   1, 1, 1, 1, 1, 0, 0, 0, 0, 0,
+			   1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+			   1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+			   1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
+			   1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+			   1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]),
+
+        function(less(_,_), [
+			   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+			   0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 10.
+
+Current CPU time: 0.00 seconds (total CPU time: 18021.01 seconds).
+Ground clauses: seen=1121, kept=802.
+Selections=1000000300, assignments=1410068408, propagations=2625817590, current_models=1.
+Rewrite_terms=1194098318, rewrite_bools=4180108474, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=300.
+
+============================== end of statistics =====================
+
+User_CPU=18021.01, System_CPU=180.44, Wall_clock=18202.
+
+Exiting with 1 model.
+
+Process 47 exit (all_models) Sat Dec  9 16:12:51 2023
+The process finished Sat Dec  9 16:12:51 2023

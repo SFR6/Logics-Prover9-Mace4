@@ -1,0 +1,258 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 485 was started by tudorcristea on DESKTOP-C94JCEA,
+Fri Dec  8 19:29:04 2023
+The command was "./mace4 -c -f Puzzles/weightPuzzle_b.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/weightPuzzle_b.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,76).
+    % assign(domain_size, 76) -> assign(start_size, 76).
+    % assign(domain_size, 76) -> assign(end_size, 76).
+assign(max_models,-1).
+
+list(distinct).
+[0,B1,B2,B3,B4,B5,B6,B7,B8,B9,B10].
+end_of_list.
+
+formulas(assumptions).
+B1 <= 10 & B2 <= 10 & B3 <= 10 & B4 <= 10 & B5 <= 10 & B6 <= 10 & B7 <= 10 & B8 <= 10 & B9 <= 10 & B10 <= 10.
+B1 < B2.
+B3 < B4 & B4 < B5 & B5 < B6.
+B7 < B8 & B8 < B9 & B9 < B10.
+B1 < B3 & B3 < B7.
+B10 != 8.
+b(1) = 15.
+b(2) = 13.
+b(3) = 11.
+b(4) = 10.
+b(5) = 9.
+b(6) = 8.
+b(7) = 4.
+b(8) = 2.
+b(9) = 2.
+b(10) = 1.
+x >= 11 | x = 0 -> b(x) = 0.
+c1 = 25.
+c2 = 25.
+c3 = 25.
+c1 = b(B1) + b(B2).
+c2 = b(B3) + b(B4) + b(B5) + b(B6).
+c3 = b(B7) + b(B8) + b(B9) + b(B10).
+c1 + c2 + c3 = 75.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 B1 <= 10 & B2 <= 10 & B3 <= 10 & B4 <= 10 & B5 <= 10 & B6 <= 10 & B7 <= 10 & B8 <= 10 & B9 <= 10 & B10 <= 10 # label(non_clause).  [assumption].
+2 B3 < B4 & B4 < B5 & B5 < B6 # label(non_clause).  [assumption].
+3 B7 < B8 & B8 < B9 & B9 < B10 # label(non_clause).  [assumption].
+4 B1 < B3 & B3 < B7 # label(non_clause).  [assumption].
+5 x >= 11 | x = 0 -> b(x) = 0 # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+B1 <= 10.
+B2 <= 10.
+B3 <= 10.
+B4 <= 10.
+B5 <= 10.
+B6 <= 10.
+B7 <= 10.
+B8 <= 10.
+B9 <= 10.
+B10 <= 10.
+B1 < B2.
+B3 < B4.
+B4 < B5.
+B5 < B6.
+B7 < B8.
+B8 < B9.
+B9 < B10.
+B1 < B3.
+B3 < B7.
+B10 != 8.
+b(1) = 15.
+b(2) = 13.
+b(3) = 11.
+b(4) = 10.
+b(5) = 9.
+b(6) = 8.
+b(7) = 4.
+b(8) = 2.
+b(9) = 2.
+b(10) = 1.
+-(x >= 11) | b(x) = 0.
+x != 0 | b(x) = 0.
+c1 = 25.
+c2 = 25.
+c3 = 25.
+c1 = b(B1) + b(B2).
+c2 = b(B3) + b(B4) + b(B5) + b(B6).
+c3 = b(B7) + b(B8) + b(B9) + b(B10).
+c1 + c2 + c3 = 75.
+0 != B1.
+0 != B2.
+0 != B3.
+0 != B4.
+0 != B5.
+0 != B6.
+0 != B7.
+0 != B8.
+0 != B9.
+0 != B10.
+B1 != B2.
+B1 != B3.
+B1 != B4.
+B1 != B5.
+B1 != B6.
+B1 != B7.
+B1 != B8.
+B1 != B9.
+B1 != B10.
+B2 != B3.
+B2 != B4.
+B2 != B5.
+B2 != B6.
+B2 != B7.
+B2 != B8.
+B2 != B9.
+B2 != B10.
+B3 != B4.
+B3 != B5.
+B3 != B6.
+B3 != B7.
+B3 != B8.
+B3 != B9.
+B3 != B10.
+B4 != B5.
+B4 != B6.
+B4 != B7.
+B4 != B8.
+B4 != B9.
+B4 != B10.
+B5 != B6.
+B5 != B7.
+B5 != B8.
+B5 != B9.
+B5 != B10.
+B6 != B7.
+B6 != B8.
+B6 != B9.
+B6 != B10.
+B7 != B8.
+B7 != B9.
+B7 != B10.
+B8 != B9.
+B8 != B10.
+B9 != B10.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 75.
+
+============================== DOMAIN SIZE 76 ========================
+
+============================== MODEL =================================
+
+interpretation( 76, [number=1, seconds=0], [
+
+        function(B1, [ 1 ]),
+
+        function(B10, [ 9 ]),
+
+        function(B2, [ 4 ]),
+
+        function(B3, [ 2 ]),
+
+        function(B4, [ 5 ]),
+
+        function(B5, [ 8 ]),
+
+        function(B6, [10 ]),
+
+        function(B7, [ 3 ]),
+
+        function(B8, [ 6 ]),
+
+        function(B9, [ 7 ]),
+
+        function(c1, [25 ]),
+
+        function(c2, [25 ]),
+
+        function(c3, [25 ]),
+
+        function(b(_), [ 0,15,13,11,10, 9, 8, 4, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== MODEL =================================
+
+interpretation( 76, [number=2, seconds=0], [
+
+        function(B1, [ 1 ]),
+
+        function(B10, [10 ]),
+
+        function(B2, [ 4 ]),
+
+        function(B3, [ 2 ]),
+
+        function(B4, [ 6 ]),
+
+        function(B5, [ 8 ]),
+
+        function(B6, [ 9 ]),
+
+        function(B7, [ 3 ]),
+
+        function(B8, [ 5 ]),
+
+        function(B9, [ 7 ]),
+
+        function(c1, [25 ]),
+
+        function(c2, [25 ]),
+
+        function(c3, [25 ]),
+
+        function(b(_), [ 0,15,13,11,10, 9, 8, 4, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 76.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.03 seconds).
+Ground clauses: seen=244, kept=157.
+Selections=665, assignments=50540, propagations=79, current_models=2.
+Rewrite_terms=644290, rewrite_bools=379785, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=166307.
+
+============================== end of statistics =====================
+
+User_CPU=0.03, System_CPU=0.00, Wall_clock=0.
+
+Exiting with 2 models.
+
+Process 485 exit (all_models) Fri Dec  8 19:29:04 2023
+The process finished Fri Dec  8 19:29:04 2023

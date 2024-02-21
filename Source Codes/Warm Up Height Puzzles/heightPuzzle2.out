@@ -1,0 +1,244 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 182 was started by tudorcristea on DESKTOP-C94JCEA,
+Sat Nov 25 11:52:33 2023
+The command was "./mace4 -c -f Puzzles/heightPuzzle2.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/heightPuzzle2.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,6).
+    % assign(domain_size, 6) -> assign(start_size, 6).
+    % assign(domain_size, 6) -> assign(end_size, 6).
+assign(max_models,-1).
+
+list(distinct).
+[Rachel,Jessica,John,Maria,Lara,Sally].
+end_of_list.
+
+formulas(assumptions).
+shorter(x,y) <-> x < y.
+taller(x,y) <-> x > y.
+shorter(x,y) -> taller(y,x).
+taller(x,y) -> shorter(y,x).
+taller(Rachel,John) & taller(Jessica,John).
+shorter(Maria,Lara) & taller(Lara,Sally).
+taller(John,Lara).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 shorter(x,y) <-> x < y # label(non_clause).  [assumption].
+2 taller(x,y) <-> x > y # label(non_clause).  [assumption].
+3 shorter(x,y) -> taller(y,x) # label(non_clause).  [assumption].
+4 taller(x,y) -> shorter(y,x) # label(non_clause).  [assumption].
+5 taller(Rachel,John) & taller(Jessica,John) # label(non_clause).  [assumption].
+6 shorter(Maria,Lara) & taller(Lara,Sally) # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+-shorter(x,y) | x < y.
+shorter(x,y) | -(x < y).
+-taller(x,y) | x > y.
+taller(x,y) | -(x > y).
+-shorter(x,y) | taller(y,x).
+-taller(x,y) | shorter(y,x).
+taller(Rachel,John).
+taller(Jessica,John).
+shorter(Maria,Lara).
+taller(Lara,Sally).
+taller(John,Lara).
+Rachel != Jessica.
+Rachel != John.
+Rachel != Maria.
+Rachel != Lara.
+Rachel != Sally.
+Jessica != John.
+Jessica != Maria.
+Jessica != Lara.
+Jessica != Sally.
+John != Maria.
+John != Lara.
+John != Sally.
+Maria != Lara.
+Maria != Sally.
+Lara != Sally.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no natural numbers in the input.
+
+============================== DOMAIN SIZE 6 =========================
+
+============================== MODEL =================================
+
+interpretation( 6, [number=1, seconds=0], [
+
+        function(Jessica, [ 4 ]),
+
+        function(John, [ 3 ]),
+
+        function(Lara, [ 2 ]),
+
+        function(Maria, [ 0 ]),
+
+        function(Rachel, [ 5 ]),
+
+        function(Sally, [ 1 ]),
+
+        relation(shorter(_,_), [
+			   0, 1, 1, 1, 1, 1,
+			   0, 0, 1, 1, 1, 1,
+			   0, 0, 0, 1, 1, 1,
+			   0, 0, 0, 0, 1, 1,
+			   0, 0, 0, 0, 0, 1,
+			   0, 0, 0, 0, 0, 0 ]),
+
+        relation(taller(_,_), [
+			   0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0,
+			   1, 1, 0, 0, 0, 0,
+			   1, 1, 1, 0, 0, 0,
+			   1, 1, 1, 1, 0, 0,
+			   1, 1, 1, 1, 1, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== MODEL =================================
+
+interpretation( 6, [number=2, seconds=0], [
+
+        function(Jessica, [ 4 ]),
+
+        function(John, [ 3 ]),
+
+        function(Lara, [ 2 ]),
+
+        function(Maria, [ 1 ]),
+
+        function(Rachel, [ 5 ]),
+
+        function(Sally, [ 0 ]),
+
+        relation(shorter(_,_), [
+			   0, 1, 1, 1, 1, 1,
+			   0, 0, 1, 1, 1, 1,
+			   0, 0, 0, 1, 1, 1,
+			   0, 0, 0, 0, 1, 1,
+			   0, 0, 0, 0, 0, 1,
+			   0, 0, 0, 0, 0, 0 ]),
+
+        relation(taller(_,_), [
+			   0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0,
+			   1, 1, 0, 0, 0, 0,
+			   1, 1, 1, 0, 0, 0,
+			   1, 1, 1, 1, 0, 0,
+			   1, 1, 1, 1, 1, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== MODEL =================================
+
+interpretation( 6, [number=3, seconds=0], [
+
+        function(Jessica, [ 5 ]),
+
+        function(John, [ 3 ]),
+
+        function(Lara, [ 2 ]),
+
+        function(Maria, [ 0 ]),
+
+        function(Rachel, [ 4 ]),
+
+        function(Sally, [ 1 ]),
+
+        relation(shorter(_,_), [
+			   0, 1, 1, 1, 1, 1,
+			   0, 0, 1, 1, 1, 1,
+			   0, 0, 0, 1, 1, 1,
+			   0, 0, 0, 0, 1, 1,
+			   0, 0, 0, 0, 0, 1,
+			   0, 0, 0, 0, 0, 0 ]),
+
+        relation(taller(_,_), [
+			   0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0,
+			   1, 1, 0, 0, 0, 0,
+			   1, 1, 1, 0, 0, 0,
+			   1, 1, 1, 1, 0, 0,
+			   1, 1, 1, 1, 1, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== MODEL =================================
+
+interpretation( 6, [number=4, seconds=0], [
+
+        function(Jessica, [ 5 ]),
+
+        function(John, [ 3 ]),
+
+        function(Lara, [ 2 ]),
+
+        function(Maria, [ 1 ]),
+
+        function(Rachel, [ 4 ]),
+
+        function(Sally, [ 0 ]),
+
+        relation(shorter(_,_), [
+			   0, 1, 1, 1, 1, 1,
+			   0, 0, 1, 1, 1, 1,
+			   0, 0, 0, 1, 1, 1,
+			   0, 0, 0, 0, 1, 1,
+			   0, 0, 0, 0, 0, 1,
+			   0, 0, 0, 0, 0, 0 ]),
+
+        relation(taller(_,_), [
+			   0, 0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0, 0,
+			   1, 1, 0, 0, 0, 0,
+			   1, 1, 1, 0, 0, 0,
+			   1, 1, 1, 1, 0, 0,
+			   1, 1, 1, 1, 1, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 6.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.00 seconds).
+Ground clauses: seen=236, kept=92.
+Selections=12, assignments=72, propagations=115, current_models=4.
+Rewrite_terms=553, rewrite_bools=315, indexes=0.
+Rules_from_neg_clauses=43, cross_offs=272.
+
+============================== end of statistics =====================
+
+User_CPU=0.00, System_CPU=0.00, Wall_clock=0.
+
+Exiting with 4 models.
+
+Process 182 exit (all_models) Sat Nov 25 11:52:33 2023
+The process finished Sat Nov 25 11:52:33 2023

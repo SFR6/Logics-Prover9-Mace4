@@ -1,0 +1,163 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 109 was started by tudorcristea on DESKTOP-C94JCEA,
+Sat Nov 25 11:46:24 2023
+The command was "./mace4 -c -f Puzzles/heightPuzzle1.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/heightPuzzle1.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,5).
+    % assign(domain_size, 5) -> assign(start_size, 5).
+    % assign(domain_size, 5) -> assign(end_size, 5).
+assign(max_models,-1).
+
+list(distinct).
+[James,Carly,Kate,Sammy,Natalie].
+end_of_list.
+
+formulas(assumptions).
+shorter(x,y) <-> x < y.
+taller(x,y) <-> x > y.
+shorter(x,y) -> taller(y,x).
+taller(x,y) -> shorter(y,x).
+taller(James,Carly) & taller(James,Kate).
+shorter(Sammy,Kate).
+shorter(Natalie,Kate) & shorter(Natalie,Sammy).
+shorter(Sammy,Carly).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 shorter(x,y) <-> x < y # label(non_clause).  [assumption].
+2 taller(x,y) <-> x > y # label(non_clause).  [assumption].
+3 shorter(x,y) -> taller(y,x) # label(non_clause).  [assumption].
+4 taller(x,y) -> shorter(y,x) # label(non_clause).  [assumption].
+5 taller(James,Carly) & taller(James,Kate) # label(non_clause).  [assumption].
+6 shorter(Natalie,Kate) & shorter(Natalie,Sammy) # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+-shorter(x,y) | x < y.
+shorter(x,y) | -(x < y).
+-taller(x,y) | x > y.
+taller(x,y) | -(x > y).
+-shorter(x,y) | taller(y,x).
+-taller(x,y) | shorter(y,x).
+taller(James,Carly).
+taller(James,Kate).
+shorter(Sammy,Kate).
+shorter(Natalie,Kate).
+shorter(Natalie,Sammy).
+shorter(Sammy,Carly).
+James != Carly.
+James != Kate.
+James != Sammy.
+James != Natalie.
+Carly != Kate.
+Carly != Sammy.
+Carly != Natalie.
+Kate != Sammy.
+Kate != Natalie.
+Sammy != Natalie.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no natural numbers in the input.
+
+============================== DOMAIN SIZE 5 =========================
+
+============================== MODEL =================================
+
+interpretation( 5, [number=1, seconds=0], [
+
+        function(Carly, [ 2 ]),
+
+        function(James, [ 4 ]),
+
+        function(Kate, [ 3 ]),
+
+        function(Natalie, [ 0 ]),
+
+        function(Sammy, [ 1 ]),
+
+        relation(shorter(_,_), [
+			   0, 1, 1, 1, 1,
+			   0, 0, 1, 1, 1,
+			   0, 0, 0, 1, 1,
+			   0, 0, 0, 0, 1,
+			   0, 0, 0, 0, 0 ]),
+
+        relation(taller(_,_), [
+			   0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0,
+			   1, 1, 0, 0, 0,
+			   1, 1, 1, 0, 0,
+			   1, 1, 1, 1, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== MODEL =================================
+
+interpretation( 5, [number=2, seconds=0], [
+
+        function(Carly, [ 3 ]),
+
+        function(James, [ 4 ]),
+
+        function(Kate, [ 2 ]),
+
+        function(Natalie, [ 0 ]),
+
+        function(Sammy, [ 1 ]),
+
+        relation(shorter(_,_), [
+			   0, 1, 1, 1, 1,
+			   0, 0, 1, 1, 1,
+			   0, 0, 0, 1, 1,
+			   0, 0, 0, 0, 1,
+			   0, 0, 0, 0, 0 ]),
+
+        relation(taller(_,_), [
+			   0, 0, 0, 0, 0,
+			   1, 0, 0, 0, 0,
+			   1, 1, 0, 0, 0,
+			   1, 1, 1, 0, 0,
+			   1, 1, 1, 1, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 5.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.00 seconds).
+Ground clauses: seen=166, kept=66.
+Selections=6, assignments=30, propagations=68, current_models=2.
+Rewrite_terms=202, rewrite_bools=136, indexes=0.
+Rules_from_neg_clauses=18, cross_offs=81.
+
+============================== end of statistics =====================
+
+User_CPU=0.00, System_CPU=0.00, Wall_clock=0.
+
+Exiting with 2 models.
+
+Process 109 exit (all_models) Sat Nov 25 11:46:24 2023
+The process finished Sat Nov 25 11:46:24 2023

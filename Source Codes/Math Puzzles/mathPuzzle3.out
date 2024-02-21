@@ -1,0 +1,134 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 984 was started by tudorcristea on DESKTOP-C94JCEA,
+Mon Dec  4 11:37:50 2023
+The command was "./mace4 -c -f Puzzles/mathPuzzle1.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/mathPuzzle1.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,3200).
+    % assign(domain_size, 3200) -> assign(start_size, 3200).
+    % assign(domain_size, 3200) -> assign(end_size, 3200).
+assign(max_models,-1).
+
+list(distinct).
+[0,a1,a2,a3,a4,a5,a6,a7].
+end_of_list.
+
+formulas(assumptions).
+a7 < a6 & a6 < a5 & a5 < a4 & a4 < a3 & a3 < a2 & a2 < a1.
+a1 = 5 * a2 + 1.
+4 * a2 = 5 * a3 + 1.
+4 * a3 = 5 * a4 + 1.
+4 * a4 = 5 * a5 + 1.
+4 * a5 = 5 * a6 + 1.
+4 * a6 = 5 * a7.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 a7 < a6 & a6 < a5 & a5 < a4 & a4 < a3 & a3 < a2 & a2 < a1 # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+a7 < a6.
+a6 < a5.
+a5 < a4.
+a4 < a3.
+a3 < a2.
+a2 < a1.
+a1 = 5 * a2 + 1.
+4 * a2 = 5 * a3 + 1.
+4 * a3 = 5 * a4 + 1.
+4 * a4 = 5 * a5 + 1.
+4 * a5 = 5 * a6 + 1.
+4 * a6 = 5 * a7.
+0 != a1.
+0 != a2.
+0 != a3.
+0 != a4.
+0 != a5.
+0 != a6.
+0 != a7.
+a1 != a2.
+a1 != a3.
+a1 != a4.
+a1 != a5.
+a1 != a6.
+a1 != a7.
+a2 != a3.
+a2 != a4.
+a2 != a5.
+a2 != a6.
+a2 != a7.
+a3 != a4.
+a3 != a5.
+a3 != a6.
+a3 != a7.
+a4 != a5.
+a4 != a6.
+a4 != a7.
+a5 != a6.
+a5 != a7.
+a6 != a7.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 5.
+
+============================== DOMAIN SIZE 3200 ======================
+
+============================== MODEL =================================
+
+interpretation( 3200, [number=1, seconds=115], [
+
+        function(a1, [3121 ]),
+
+        function(a2, [624 ]),
+
+        function(a3, [499 ]),
+
+        function(a4, [399 ]),
+
+        function(a5, [319 ]),
+
+        function(a6, [255 ]),
+
+        function(a7, [204 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 3200.
+
+Current CPU time: 0.00 seconds (total CPU time: 118.01 seconds).
+Ground clauses: seen=40, kept=40.
+Selections=3998, assignments=12793600, propagations=0, current_models=1.
+Rewrite_terms=115116594, rewrite_bools=41543980, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=60745727.
+
+============================== end of statistics =====================
+
+User_CPU=118.06, System_CPU=0.29, Wall_clock=118.
+
+Exiting with 1 model.
+
+Process 984 exit (all_models) Mon Dec  4 11:39:48 2023
+The process finished Mon Dec  4 11:39:48 2023

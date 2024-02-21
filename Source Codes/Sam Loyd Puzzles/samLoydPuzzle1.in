@@ -1,0 +1,18 @@
+set(arithmetic).
+assign(domain_size, 901).
+assign(max_models, -1).
+assign(max_seconds, 15).
+
+formulas(assumptions).
+	
+	Wagon0>0 & People0>0 & Wagon1>0 & People1>0 & Wagon2>0 & People2>0. 
+	
+	Wagon1 = Wagon0 + -10.
+	People1 = People0 + 1.
+	
+	Wagon2 = Wagon1 + -15.
+	People2 = People0 + 3.
+	
+	Wagon0*People0=Wagon1*People1 & Wagon0*People0=Wagon2*People2.
+
+end_of_list.

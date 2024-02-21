@@ -1,0 +1,121 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 2603 was started by tudorcristea on DESKTOP-C94JCEA,
+Sat Nov 25 16:38:13 2023
+The command was "./mace4 -c -f Puzzles/numberPuzzle2.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/numberPuzzle2.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,1400).
+    % assign(domain_size, 1400) -> assign(start_size, 1400).
+    % assign(domain_size, 1400) -> assign(end_size, 1400).
+assign(max_models,-1).
+
+list(distinct).
+[D,E].
+[0,D].
+end_of_list.
+
+formulas(assumptions).
+D <= 9 & E <= 9.
+n1 = D * 10 + D.
+n2 = D * 1000 + E * 100 + E * 10 + D.
+E = 0 -> 1 = n2.
+E = 1 -> n1 = n2.
+E = 2 -> n1 * n1 = n2.
+E = 3 -> n1 * n1 * n1 = n2.
+E = 4 -> n1 * n1 * n1 * n1 = n2.
+E = 5 -> n1 * n1 * n1 * n1 * n1 = n2.
+E = 6 -> n1 * n1 * n1 * n1 * n1 * n1 = n2.
+E = 7 -> n1 * n1 * n1 * n1 * n1 * n1 * n1 = n2.
+E = 8 -> n1 * n1 * n1 * n1 * n1 * n1 * n1 * n1 = n2.
+E = 9 -> n1 * n1 * n1 * n1 * n1 * n1 * n1 * n1 * n1 = n2.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 D <= 9 & E <= 9 # label(non_clause).  [assumption].
+2 E = 0 -> 1 = n2 # label(non_clause).  [assumption].
+3 E = 1 -> n1 = n2 # label(non_clause).  [assumption].
+4 E = 2 -> n1 * n1 = n2 # label(non_clause).  [assumption].
+5 E = 3 -> n1 * n1 * n1 = n2 # label(non_clause).  [assumption].
+6 E = 4 -> n1 * n1 * n1 * n1 = n2 # label(non_clause).  [assumption].
+7 E = 5 -> n1 * n1 * n1 * n1 * n1 = n2 # label(non_clause).  [assumption].
+8 E = 6 -> n1 * n1 * n1 * n1 * n1 * n1 = n2 # label(non_clause).  [assumption].
+9 E = 7 -> n1 * n1 * n1 * n1 * n1 * n1 * n1 = n2 # label(non_clause).  [assumption].
+10 E = 8 -> n1 * n1 * n1 * n1 * n1 * n1 * n1 * n1 = n2 # label(non_clause).  [assumption].
+11 E = 9 -> n1 * n1 * n1 * n1 * n1 * n1 * n1 * n1 * n1 = n2 # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+D <= 9.
+E <= 9.
+n1 = D * 10 + D.
+n2 = D * 1000 + E * 100 + E * 10 + D.
+0 != E | n2 = 1.
+E != 1 | n2 = n1.
+2 != E | n1 * n1 = n2.
+3 != E | n1 * n1 * n1 = n2.
+4 != E | n1 * n1 * n1 * n1 = n2.
+5 != E | n1 * n1 * n1 * n1 * n1 = n2.
+6 != E | n1 * n1 * n1 * n1 * n1 * n1 = n2.
+7 != E | n1 * n1 * n1 * n1 * n1 * n1 * n1 = n2.
+8 != E | n1 * n1 * n1 * n1 * n1 * n1 * n1 * n1 = n2.
+9 != E | n1 * n1 * n1 * n1 * n1 * n1 * n1 * n1 * n1 = n2.
+D != E.
+0 != D.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 1000.
+
+============================== DOMAIN SIZE 1400 ======================
+
+============================== MODEL =================================
+
+interpretation( 1400, [number=1, seconds=0], [
+
+        function(D, [ 1 ]),
+
+        function(E, [ 3 ]),
+
+        function(n1, [11 ]),
+
+        function(n2, [1331 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 1400.
+
+Current CPU time: 0.00 seconds (total CPU time: 1.20 seconds).
+Ground clauses: seen=16, kept=16.
+Selections=146, assignments=204400, propagations=11209, current_models=1.
+Rewrite_terms=5226274, rewrite_bools=344337, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=1400.
+
+============================== end of statistics =====================
+
+User_CPU=1.21, System_CPU=0.06, Wall_clock=2.
+
+Exiting with 1 model.
+
+Process 2603 exit (all_models) Sat Nov 25 16:38:15 2023
+The process finished Sat Nov 25 16:38:15 2023

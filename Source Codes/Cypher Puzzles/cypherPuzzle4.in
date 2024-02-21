@@ -1,0 +1,68 @@
+set(arithmetic).
+assign(domain_size, 30).
+assign(max_models, -1).
+
+list(distinct).
+	[A,B,C,D,E,F,G,H,I,J].
+end_of_list.
+
+formulas(assumptions).
+	
+	square(x) <-> x=0 | x=1 | x=4 | x=9.
+	triangle(x) <-> x=1 | x=3 | x=6.
+	even(x) <-> x=0 | x=2 | x=4 | x=6 | x=8.
+	odd(x) <-> x=1 | x=3 | x=5 | x=7 | x=9.
+	cube(x) <-> x=0 | x=1 | x=8.
+	prime(x) <-> x=2 | x=3 | x=5 | x=7.
+	
+	A<=9 & B<=9 & C<=9 & D<=9 & E<=9 & F<=9 & G<=9 & H<=9 & I<=9 & J<=9. 
+	
+	A>0.
+	
+	%Clue 1:
+	square(A) | triangle(A).
+	-(square(A) & triangle(A)).
+	
+	%Clue 2:
+	even(B) | cube(B).
+	-(even(B) & cube(B)).
+	
+	%Clue 3:
+	cube(C) | triangle(C).
+	-(cube(C) & triangle(C)).
+	
+	%Clue 4:
+	odd(D) | square(D).
+	-(odd(D) & square(D)).
+	
+	%Clue 5:
+	odd(E) | cube(E).
+	-(odd(E) & cube(E)).
+	
+	%Clue 6:
+	odd(F) | triangle(F).
+	-(odd(F) & triangle(F)).
+	
+	%Clue 7:
+	odd(G) | prime(G).
+	-(odd(G) & prime(G)).
+	
+	%Clue 8:
+	even(H) | square(H).
+	-(even(H) & square(H)).
+	
+	%Clue 9:
+	square(I) | cube(I).
+	-(square(I) & cube(I)).
+	
+	%Clue 10:
+	prime(J) | triangle(J).
+	-(prime(J) & triangle(J)).
+	
+	%Clue 11:
+	A<B & C<D & E<F & G<H & I<J.
+	
+	%Clue 12:
+	A+B+C+D+E < F+G+H+I+J.
+
+end_of_list.

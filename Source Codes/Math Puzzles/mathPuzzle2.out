@@ -1,0 +1,104 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 24693 was started by tudorcristea on DESKTOP-C94JCEA,
+Sat Nov 25 19:56:53 2023
+The command was "./mace4 -c -f Puzzles/numberPuzzle3.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/numberPuzzle3.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,121).
+    % assign(domain_size, 121) -> assign(start_size, 121).
+    % assign(domain_size, 121) -> assign(end_size, 121).
+assign(max_models,1).
+
+formulas(assumptions).
+loaves = 120.
+numberOfWorkers = 5.
+Worker1 = Worker + -(2 * d).
+Worker2 = Worker + -d.
+Worker3 = Worker.
+Worker4 = Worker + d.
+Worker5 = Worker + 2 * d.
+Worker = loaves / numberOfWorkers.
+7 * (Worker1 + Worker2) = Worker3 + Worker4 + Worker5.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+loaves = 120.
+numberOfWorkers = 5.
+Worker1 = Worker + -(2 * d).
+Worker2 = Worker + -d.
+Worker3 = Worker.
+Worker4 = Worker + d.
+Worker5 = Worker + 2 * d.
+Worker = loaves / numberOfWorkers.
+7 * (Worker1 + Worker2) = Worker3 + Worker4 + Worker5.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 120.
+
+============================== DOMAIN SIZE 121 =======================
+
+============================== MODEL =================================
+
+interpretation( 121, [number=1, seconds=0], [
+
+        function(Worker, [24 ]),
+
+        function(Worker1, [ 2 ]),
+
+        function(Worker2, [13 ]),
+
+        function(Worker3, [24 ]),
+
+        function(Worker4, [35 ]),
+
+        function(Worker5, [46 ]),
+
+        function(d, [11 ]),
+
+        function(loaves, [120 ]),
+
+        function(numberOfWorkers, [ 5 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 121.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.60 seconds).
+Ground clauses: seen=9, kept=9.
+Selections=35810, assignments=4332421, propagations=3, current_models=1.
+Rewrite_terms=4370075, rewrite_bools=4303111, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=0.
+
+============================== end of statistics =====================
+
+User_CPU=0.60, System_CPU=0.01, Wall_clock=1.
+
+Exiting with 1 model.
+
+Process 24693 exit (max_models) Sat Nov 25 19:56:54 2023
+The process finished Sat Nov 25 19:56:54 2023

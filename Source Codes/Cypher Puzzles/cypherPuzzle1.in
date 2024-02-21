@@ -1,0 +1,16 @@
+set(arithmetic).
+assign(domain_size, 1001).
+assign(max_models, 1).
+
+list(distinct).
+	[A,B,C,D,E].
+	[0,A].
+end_of_list.
+
+formulas(assumptions).
+	
+	A<=9 & B<=9 & C<=9 & D<=9 & E<=9.
+	
+	(A*1000 + B*100 + C*10 + D) * E = D*1000 + C*100 + B*10 + A.
+
+end_of_list.

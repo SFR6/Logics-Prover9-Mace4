@@ -1,0 +1,101 @@
+============================== Mace4 =================================
+Mace4 (64) version 2017-11A (CIIRC), November 2017.
+Process 24676 was started by tudorcristea on DESKTOP-C94JCEA,
+Sat Nov 25 19:55:47 2023
+The command was "./mace4 -c -f Puzzles/samLoydPuzzle1.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file Puzzles/samLoydPuzzle1.in
+
+set(arithmetic).
+    % set(arithmetic) -> clear(lnh).
+    % set(arithmetic) -> assign(selection_order, 0).
+
+    % Declaring Mace4 arithmetic parse types.
+assign(domain_size,901).
+    % assign(domain_size, 901) -> assign(start_size, 901).
+    % assign(domain_size, 901) -> assign(end_size, 901).
+assign(max_models,-1).
+assign(max_seconds,15).
+
+formulas(assumptions).
+Wagon0 > 0 & People0 > 0 & Wagon1 > 0 & People1 > 0 & Wagon2 > 0 & People2 > 0.
+Wagon1 = Wagon0 + -10.
+People1 = People0 + 1.
+Wagon2 = Wagon1 + -15.
+People2 = People0 + 3.
+Wagon0 * People0 = Wagon1 * People1 & Wagon0 * People0 = Wagon2 * People2.
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Wagon0 > 0 & People0 > 0 & Wagon1 > 0 & People1 > 0 & Wagon2 > 0 & People2 > 0 # label(non_clause).  [assumption].
+2 Wagon0 * People0 = Wagon1 * People1 & Wagon0 * People0 = Wagon2 * People2 # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+Wagon0 > 0.
+People0 > 0.
+Wagon1 > 0.
+People1 > 0.
+Wagon2 > 0.
+People2 > 0.
+Wagon1 = Wagon0 + -10.
+People1 = People0 + 1.
+Wagon2 = Wagon1 + -15.
+People2 = People0 + 3.
+Wagon1 * People1 = Wagon0 * People0.
+Wagon2 * People2 = Wagon0 * People0.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The largest natural number in the input is 15.
+
+============================== DOMAIN SIZE 901 =======================
+
+============================== MODEL =================================
+
+interpretation( 901, [number=1, seconds=12], [
+
+        function(People0, [ 9 ]),
+
+        function(People1, [10 ]),
+
+        function(People2, [12 ]),
+
+        function(Wagon0, [100 ]),
+
+        function(Wagon1, [90 ]),
+
+        function(Wagon2, [75 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 901.
+
+Current CPU time: 0.00 seconds (total CPU time: 15.01 seconds).
+Ground clauses: seen=12, kept=12.
+Selections=8757, assignments=7887108, propagations=0, current_models=1.
+Rewrite_terms=7933195, rewrite_bools=7888935, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=0.
+
+============================== end of statistics =====================
+
+User_CPU=15.01, System_CPU=0.04, Wall_clock=15.
+
+Exiting with 1 model.
+
+Process 24676 exit (max_sec_yes) Sat Nov 25 19:56:02 2023
+The process finished Sat Nov 25 19:56:02 2023

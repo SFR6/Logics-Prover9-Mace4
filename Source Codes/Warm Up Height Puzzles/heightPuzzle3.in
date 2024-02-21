@@ -1,0 +1,26 @@
+set(arithmetic).
+assign(domain_size, 5).
+assign(max_models, -1).
+
+list(distinct).
+	[Joy, Cassie, Geoff, Val, Brian].
+end_of_list.
+
+formulas(assumptions).
+
+	shorter(x,y) <-> x < y.
+	taller(x,y) <-> x > y.
+	
+	shorter(x,y) -> taller(y,x).
+	taller(x,y) -> shorter(y,x).
+	
+	%Joy is taller than Cassie
+	taller(Joy,Cassie).
+	
+	%Joy is taller than Brian who is taller than Cassie and Geoff
+	taller(Joy,Brian) & taller(Brian,Cassie) & taller(Brian,Geoff).
+	
+	%Geoff is shorter than Val who is shorter than Cassie
+	shorter(Geoff,Val) & shorter(Val,Cassie).
+
+end_of_list.

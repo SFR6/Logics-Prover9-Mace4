@@ -1,0 +1,38 @@
+set(arithmetic).
+assign(domain_size, 51).
+assign(max_models, -1).
+
+list(distinct).
+	[0, Tammy, Tracey, Tommy, Timmy, Tony, Mother].
+end_of_list.
+
+formulas(assumptions).
+	
+	Tony<Tammy & Tony<Tracey & Tony<Tommy & Tony<Timmy & Tony<Mother.
+	Mother>Tammy & Mother>Tracey & Mother>Tommy & Mother>Timmy.
+	Tommy>Tammy & Tommy>Tracey & Tommy>Timmy.
+	
+	Tammy=3*(Timmy + -Tony).
+	
+	Mother + -Tony = 30.
+	
+	% The factors of 30, excluding 1 and 30, are: 2, 3, 5, 6, 10, 15 
+	(Tammy + -Tony = 2) | (Tammy + -Tony = 3) | (Tammy + -Tony = 5) | (Tammy + -Tony = 6) | (Tammy + -Tony = 10) | (Tammy + -Tony = 15).
+	(Tracey + -Tony = 2) | (Tracey + -Tony = 3) | (Tracey + -Tony = 5) | (Tracey + -Tony = 6) | (Tracey + -Tony = 10) | (Tracey + -Tony = 15).
+	(Tommy + -Tony = 2) | (Tommy + -Tony = 3) | (Tommy + -Tony = 5) | (Tommy + -Tony = 6) | (Tommy + -Tony = 10) | (Tommy + -Tony = 15).
+	(Timmy + -Tony = 2) | (Timmy + -Tony = 3) | (Timmy + -Tony = 5) | (Timmy + -Tony = 6) | (Timmy + -Tony = 10) | (Timmy + -Tony = 15).
+	
+	2*n1 = 2*Tracey + -Tammy.
+	% It will result that n1=7; therefore Mother-7=36
+	% The factors of 36, excluding 1 and 36 are: 2, 3, 4, 6, 9, 12, 18
+	
+	(Tracey + -n1 = 2) | (Tracey + -n1 = 3) | (Tracey + -n1 = 4) | (Tracey + -n1 = 6) | (Tracey + -n1 = 9) | (Tracey + -n1 = 12) | (Tracey + -n1 = 18).
+	(Timmy + -n1 = 2) | (Timmy + -n1 = 3) | (Timmy + -n1 = 4) | (Timmy + -n1 = 6) | (Timmy + -n1 = 9) | (Timmy + -n1 = 12) | (Timmy + -n1 = 18).
+	(Tony + -n1 = 2) | (Tony + -n1 = 3) | (Tony + -n1 = 4) | (Tony + -n1 = 6) | (Tony + -n1 = 9) | (Tony + -n1 = 12) | (Tony + -n1 = 18).
+	
+	n2 = 50 + -Mother.
+	Tony + n2 = Mother + -Tommy.
+	
+	n1=n2.
+
+end_of_list.

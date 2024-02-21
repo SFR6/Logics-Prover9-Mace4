@@ -1,0 +1,65 @@
+set(arithmetic).
+assign(domain_size, 15).
+assign(max_models, -1).
+assign(max_seconds, 10).
+
+formulas(assumptions).
+
+	A=0.
+	B=1.
+	C=2.
+	D=3.
+	E=4.
+	F=5.
+	G=6.
+	H=7.
+	I=8.
+	J=9.
+	K=10.
+	L=11.
+	M=12.
+	N=13.
+	O=14.
+	
+	walkTogetherMon(x,y) -> walkTogetherMon(y,x).
+	walkTogetherTue(x,y) -> walkTogetherTue(y,x).
+	walkTogetherWed(x,y) -> walkTogetherWed(y,x).
+	walkTogetherThu(x,y) -> walkTogetherThu(y,x).
+	walkTogetherFri(x,y) -> walkTogetherFri(y,x).
+	walkTogetherSat(x,y) -> walkTogetherSat(y,x).
+	walkTogetherSun(x,y) -> walkTogetherSun(y,x).
+	
+	% A schoolgirl cannot walk to school with herself
+	-walkTogetherMon(x,x) & -walkTogetherTue(x,x) & -walkTogetherWed(x,x) & -walkTogetherThu(x,x) & -walkTogetherFri(x,x) & -walkTogetherSat(x,x) & -walkTogetherSun(x,x).
+	
+	exists y1 exists y2 (y1<y2 & walkTogetherMon(x,y1) & walkTogetherMon(x,y2)).
+	y1<y2 & walkTogetherMon(x,y1) & walkTogetherMon(x,y2) & walkTogetherMon(x,y3) -> y3=y1 | y3=y2.
+	
+	exists y1 exists y2 (y1<y2 & walkTogetherTue(x,y1) & walkTogetherTue(x,y2)).
+	y1<y2 & walkTogetherTue(x,y1) & walkTogetherTue(x,y2) & walkTogetherTue(x,y3) -> y3=y1 | y3=y2.
+	
+	exists y1 exists y2 (y1<y2 & walkTogetherWed(x,y1) & walkTogetherWed(x,y2)).
+	y1<y2 & walkTogetherWed(x,y1) & walkTogetherWed(x,y2) & walkTogetherWed(x,y3) -> y3=y1 | y3=y2.
+	
+	exists y1 exists y2 (y1<y2 & walkTogetherThu(x,y1) & walkTogetherThu(x,y2)).
+	y1<y2 & walkTogetherThu(x,y1) & walkTogetherThu(x,y2) & walkTogetherThu(x,y3) -> y3=y1 | y3=y2.
+	
+	exists y1 exists y2 (y1<y2 & walkTogetherFri(x,y1) & walkTogetherFri(x,y2)).
+	y1<y2 & walkTogetherFri(x,y1) & walkTogetherFri(x,y2) & walkTogetherFri(x,y3) -> y3=y1 | y3=y2.
+	
+	exists y1 exists y2 (y1<y2 & walkTogetherSat(x,y1) & walkTogetherSat(x,y2)).
+	y1<y2 & walkTogetherSat(x,y1) & walkTogetherSat(x,y2) & walkTogetherSat(x,y3) -> y3=y1 | y3=y2.
+	
+	exists y1 exists y2 (y1<y2 & walkTogetherSun(x,y1) & walkTogetherSun(x,y2)).
+	y1<y2 & walkTogetherSun(x,y1) & walkTogetherSun(x,y2) & walkTogetherSun(x,y3) -> y3=y1 | y3=y2.
+	
+	
+	walkTogetherMon(x,y) -> -walkTogetherTue(x,y) & -walkTogetherWed(x,y) & -walkTogetherThu(x,y) & -walkTogetherFri(x,y) & -walkTogetherSat(x,y) & -walkTogetherSun(x,y).
+	walkTogetherTue(x,y) -> -walkTogetherMon(x,y) & -walkTogetherWed(x,y) & -walkTogetherThu(x,y) & -walkTogetherFri(x,y) & -walkTogetherSat(x,y) & -walkTogetherSun(x,y).
+	walkTogetherWed(x,y) -> -walkTogetherTue(x,y) & -walkTogetherMon(x,y) & -walkTogetherThu(x,y) & -walkTogetherFri(x,y) & -walkTogetherSat(x,y) & -walkTogetherSun(x,y).
+	walkTogetherThu(x,y) -> -walkTogetherTue(x,y) & -walkTogetherWed(x,y) & -walkTogetherMon(x,y) & -walkTogetherFri(x,y) & -walkTogetherSat(x,y) & -walkTogetherSun(x,y).
+	walkTogetherFri(x,y) -> -walkTogetherTue(x,y) & -walkTogetherWed(x,y) & -walkTogetherThu(x,y) & -walkTogetherMon(x,y) & -walkTogetherSat(x,y) & -walkTogetherSun(x,y).
+	walkTogetherSat(x,y) -> -walkTogetherTue(x,y) & -walkTogetherWed(x,y) & -walkTogetherThu(x,y) & -walkTogetherFri(x,y) & -walkTogetherMon(x,y) & -walkTogetherSun(x,y).
+	walkTogetherSun(x,y) -> -walkTogetherTue(x,y) & -walkTogetherWed(x,y) & -walkTogetherThu(x,y) & -walkTogetherFri(x,y) & -walkTogetherSat(x,y) & -walkTogetherMon(x,y).
+
+end_of_list.
